@@ -1,8 +1,9 @@
 import { Link } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { ExternalLink } from '@/components/ExternalLink';
 import { Brand } from '@/constants/Colors';
-import { COMPANY } from '@/constants/content';
+import { COMPANY, CREATEDPLAYAS_URL } from '@/constants/content';
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -19,6 +20,9 @@ export function SiteFooter() {
           <Link href="/contact" style={styles.link}>
             <Text style={styles.linkText}>Contact</Text>
           </Link>
+          <ExternalLink href={CREATEDPLAYAS_URL} style={styles.link}>
+            <Text style={styles.linkText}>CreatedPlayas</Text>
+          </ExternalLink>
         </View>
       </View>
     </View>

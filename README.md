@@ -7,7 +7,7 @@ Marketing site for **Priceless Dreams**, a tech enterprise building apps, platfo
 - **Home** (`/`) — Hero, services, stats, product portfolio, and call-to-action
 - **Contact** (`/contact`) — Message form (opens your email client) and company details
 
-Top navigation bar (Home | Contact) — no bottom tabs.
+Top navigation bar (Home | Contact | CreatedPlayas) — no bottom tabs.
 
 ## Run locally
 
@@ -35,3 +35,8 @@ npm run android
 - Company copy and products: `constants/content.ts`
 - Brand colors: `constants/Colors.ts`
 - Contact email: `COMPANY.email` in `constants/content.ts`
+
+## Ventures
+
+- [CreatedPlayas.com](https://createdplayas.com) — live conversation practice platform (owned & operated)
+- [LuvSense](https://apps.apple.com/us/app/luvsense/id6747411728) — relationship wellness app

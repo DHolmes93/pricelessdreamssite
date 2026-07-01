@@ -29,7 +29,16 @@ export const SERVICES = [
   },
 ] as const;
 
+export const CREATEDPLAYAS_URL = 'https://createdplayas.com' as const;
+
 export const PRODUCTS = [
+  {
+    name: 'CreatedPlayas',
+    category: 'Owned & operated',
+    description:
+      'Live conversation practice for men who freeze up mid-conversation. Run reps on camera, recover when your mind goes blank, and build confidence through deliberate practice.',
+    websiteUrl: CREATEDPLAYAS_URL,
+  },
   {
     name: 'LuvSense',
     category: 'Lifestyle',

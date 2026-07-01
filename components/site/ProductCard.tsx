@@ -8,21 +8,43 @@ type ProductCardProps = {
   name: string;
   category: string;
   description: string;
-  appStoreUrl: string;
+  appStoreUrl?: string;
+  websiteUrl?: string;
 };
 
-export function ProductCard({ name, category, description, appStoreUrl }: ProductCardProps) {
+export function ProductCard({
+  name,
+  category,
+  description,
+  appStoreUrl,
+  websiteUrl,
+}: ProductCardProps) {
   return (
     <View style={styles.card}>
       <Text style={styles.category}>{category}</Text>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.description}>{description}</Text>
-      <ExternalLink href={appStoreUrl} asChild>
-        <Pressable style={({ pressed }) => [styles.storeLink, pressed && styles.pressed]}>
-          <FontAwesome name="apple" size={18} color={Brand.navy} />
-          <Text style={styles.storeLinkText}>Download on the App Store</Text>
-        </Pressable>
-      </ExternalLink>
+      {websiteUrl ? (
+        <ExternalLink href={websiteUrl} asChild>
+          <Pressable style={({ pressed }) => [styles.storeLink, pressed && styles.pressed]}>
+            <FontAwesome name="globe" size={18} color={Brand.navy} />
+            <Text style={styles.storeLinkText}>Visit {name}</Text>
+          </Pressable>
+        </ExternalLink>
+      ) : null}
+      {appStoreUrl ? (
+        <ExternalLink href={appStoreUrl} asChild>
+          <Pressable
+            style={({ pressed }) => [
+              styles.storeLink,
+              websiteUrl && styles.storeLinkSecondary,
+              pressed && styles.pressed,
+            ]}>
+            <FontAwesome name="apple" size={18} color={Brand.navy} />
+            <Text style={styles.storeLinkText}>Download on the App Store</Text>
+          </Pressable>
+        </ExternalLink>
+      ) : null}
     </View>
   );
 }
@@ -66,6 +88,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderRadius: 10,
+  },
+  storeLinkSecondary: {
+    marginTop: 12,
+    backgroundColor: 'rgba(212, 175, 55, 0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(212, 175, 55, 0.35)',
   },
   storeLinkText: {
     fontSize: 14,

@@ -2,12 +2,14 @@ import { Link, usePathname } from 'expo-router';
 import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { ExternalLink } from '@/components/ExternalLink';
 import { Brand } from '@/constants/Colors';
-import { COMPANY } from '@/constants/content';
+import { COMPANY, CREATEDPLAYAS_URL } from '@/constants/content';
 
 const NAV = [
   { href: '/', label: 'Home' },
   { href: '/contact', label: 'Contact' },
+  { href: CREATEDPLAYAS_URL, label: 'CreatedPlayas', external: true },
 ] as const;
 
 export function SiteHeader() {
@@ -33,18 +35,30 @@ export function SiteHeader() {
         </Link>
 
         <View style={styles.nav}>
-          {NAV.map(({ href, label }) => {
-            const active = isActive(href);
+          {NAV.map(({ href, label, ...item }) => {
+            const active = 'external' in item ? false : isActive(href);
+            const navItem = (
+              <Pressable
+                style={({ pressed }) => [
+                  styles.navItem,
+                  active && styles.navItemActive,
+                  pressed && styles.pressed,
+                ]}>
+                <Text style={[styles.navText, active && styles.navTextActive]}>{label}</Text>
+              </Pressable>
+            );
+
+            if ('external' in item) {
+              return (
+                <ExternalLink key={href} href={href} asChild>
+                  {navItem}
+                </ExternalLink>
+              );
+            }
+
             return (
               <Link key={href} href={href} asChild>
-                <Pressable
-                  style={({ pressed }) => [
-                    styles.navItem,
-                    active && styles.navItemActive,
-                    pressed && styles.pressed,
-                  ]}>
-                  <Text style={[styles.navText, active && styles.navTextActive]}>{label}</Text>
-                </Pressable>
+                {navItem}
               </Link>
             );
           })}
