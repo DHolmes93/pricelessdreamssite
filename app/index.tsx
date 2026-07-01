@@ -38,7 +38,7 @@ export default function HomeScreen() {
 
       <Section
         title="Our products"
-        subtitle="A growing portfolio of apps, platforms, and tools—plus new ventures from our labs."
+        subtitle="Books, apps, and platforms from Priceless Dreams."
         variant="light">
         <View style={styles.productGrid}>
           {PRODUCTS.map((product) => (

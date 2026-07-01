@@ -53,6 +53,7 @@ export default function RootLayout() {
               contentStyle: { flex: 1, backgroundColor: Brand.offWhite },
             }}>
             <Stack.Screen name="index" />
+            <Stack.Screen name="products" />
             <Stack.Screen name="contact" />
             <Stack.Screen name="+not-found" options={{ headerShown: false }} />
           </Stack>

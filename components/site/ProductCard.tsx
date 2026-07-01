@@ -7,28 +7,44 @@ type ProductCardProps = {
   name: string;
   category: string;
   description: string;
+  authors?: string;
   appStoreUrl?: string;
   websiteUrl?: string;
+  amazonUrl?: string;
 };
 
 export function ProductCard({
   name,
   category,
   description,
+  authors,
   appStoreUrl,
   websiteUrl,
+  amazonUrl,
 }: ProductCardProps) {
+  const linkCount = [amazonUrl, websiteUrl, appStoreUrl].filter(Boolean).length;
+
   return (
     <View style={styles.card}>
       <Text style={styles.category}>{category}</Text>
       <Text style={styles.name}>{name}</Text>
+      {authors ? <Text style={styles.authors}>by {authors}</Text> : null}
       <Text style={styles.description}>{description}</Text>
+      {amazonUrl ? (
+        <ActionButton
+          href={amazonUrl}
+          label="Buy on Amazon"
+          icon="book"
+          style={styles.linkButton}
+        />
+      ) : null}
       {websiteUrl ? (
         <ActionButton
           href={websiteUrl}
           label={`Visit ${name}`}
           icon="globe"
-          style={styles.linkButton}
+          variant={linkCount > 1 ? 'secondary' : 'primary'}
+          style={[styles.linkButton, amazonUrl && styles.linkButtonSecondary]}
         />
       ) : null}
       {appStoreUrl ? (
@@ -36,8 +52,11 @@ export function ProductCard({
           href={appStoreUrl}
           label="Download on the App Store"
           icon="apple"
-          variant={websiteUrl ? 'secondary' : 'primary'}
-          style={[styles.linkButton, websiteUrl && styles.linkButtonSecondary]}
+          variant={amazonUrl || websiteUrl ? 'secondary' : 'primary'}
+          style={[
+            styles.linkButton,
+            (amazonUrl || websiteUrl) && styles.linkButtonSecondary,
+          ]}
         />
       ) : null}
     </View>
@@ -78,6 +97,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '700',
     color: Brand.navy,
+  },
+  authors: {
+    marginTop: 6,
+    fontSize: 13,
+    fontWeight: '600',
+    color: Brand.textMuted,
+    letterSpacing: 0.2,
   },
   description: {
     marginTop: 8,

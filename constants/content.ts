@@ -46,7 +46,33 @@ export const SERVICES = [
 
 export const CREATEDPLAYAS_URL = 'https://createdplayas.com' as const;
 
-export const PRODUCTS = [
+export type Product = {
+  name: string;
+  category: string;
+  description: string;
+  authors?: string;
+  appStoreUrl?: string;
+  websiteUrl?: string;
+  amazonUrl?: string;
+};
+
+export const PRODUCTS: Product[] = [
+  {
+    name: 'Once A Slave Always A Slave',
+    category: 'Book',
+    authors: 'Bishop Don · Donovan Holmes',
+    description:
+      'A bold look at mental slavery, miseducation, and the conditioning that keeps people trapped—calling readers to break free and think for themselves.',
+    amazonUrl: 'https://www.amazon.com/dp/B09FRZZP58',
+  },
+  {
+    name: 'Real Man Or Real Nigga',
+    category: 'Book',
+    authors: 'Donovan Holmes · Bishop Don',
+    description:
+      'You Either Build or Destroy. Street-tested wisdom for young men who want to leave destruction behind and step into real manhood, principles, and purpose.',
+    amazonUrl: 'https://www.amazon.com/dp/1533083150',
+  },
   {
     name: 'CreatedPlayas',
     category: 'Owned & operated',
@@ -56,23 +82,23 @@ export const PRODUCTS = [
   },
   {
     name: 'LuvSense',
-    category: 'Lifestyle',
+    category: 'App',
     description:
       'Your relationship journey deserves personalized guidance. LuvSense is a comprehensive relationship wellness platform with intelligent insights—not guesswork.',
     appStoreUrl: 'https://apps.apple.com/us/app/luvsense/id6747411728',
   },
   {
     name: 'OppLinq',
-    category: 'Business',
+    category: 'App',
     description:
       'Find your next opportunity—whether that’s a career move, a steady job, or a side hustle you can start today. Answer a few questions and discover your path.',
     appStoreUrl: 'https://apps.apple.com/us/app/opplinq/id6759388798',
   },
-] as const;
+];
 
 export const STATS = [
+  { value: '2', label: 'Books published' },
   { value: '2', label: 'Apps on the App Store' },
   { value: '12', label: 'Countries served' },
   { value: '24/7', label: 'Engineering support' },
-  { value: '∞', label: 'Ideas in the pipeline' },
 ] as const;

@@ -6,7 +6,7 @@ import { CircuitPattern } from '@/components/brand/CircuitPattern';
 import { ActionButton } from '@/components/site/ActionButton';
 import { IconBadge } from '@/components/site/IconBadge';
 import { Brand } from '@/constants/Colors';
-import { COMPANY, CREATEDPLAYAS_URL, FOUNDER_ROLES } from '@/constants/content';
+import { COMPANY, FOUNDER_ROLES } from '@/constants/content';
 
 export function SiteHero() {
   return (
@@ -36,12 +36,7 @@ export function SiteHero() {
 
           <View style={styles.actions}>
             <ActionButton href="/contact" label="Get in touch" style={styles.cta} />
-            <ActionButton
-              href={CREATEDPLAYAS_URL}
-              label="CreatedPlayas"
-              variant="secondary"
-              style={styles.cta}
-            />
+            <ActionButton href="/products" label="View products" style={styles.cta} />
           </View>
 
           <View style={styles.roles}>

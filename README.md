@@ -5,9 +5,10 @@ Marketing site for **Priceless Dreams**, a tech enterprise building apps, platfo
 ## Pages
 
 - **Home** (`/`) — Hero, services, stats, product portfolio, and call-to-action
+- **Products** (`/products`) — Books, apps, and platforms
 - **Contact** (`/contact`) — Message form (opens your email client) and company details
 
-Top navigation bar (Home | Contact | CreatedPlayas) — no bottom tabs.
+Top navigation bar (Home | Products | Contact) — no bottom tabs.
 
 ## Run locally
 
@@ -36,7 +37,9 @@ npm run android
 - Brand colors: `constants/Colors.ts`
 - Contact email: `COMPANY.email` in `constants/content.ts`
 
-## Ventures
+## Ventures & books
 
+- [Once A Slave Always A Slave](https://www.amazon.com/dp/B09FRZZP58) — by Bishop Don · Donovan Holmes
+- [Real Man Or Real Nigga](https://www.amazon.com/dp/1533083150) — by Donovan Holmes · Bishop Don
 - [CreatedPlayas.com](https://createdplayas.com) — live conversation practice platform (owned & operated)
 - [LuvSense](https://apps.apple.com/us/app/luvsense/id6747411728) — relationship wellness app

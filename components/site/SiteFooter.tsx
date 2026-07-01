@@ -1,10 +1,9 @@
-import { Link } from 'expo-router';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Href, Link } from 'expo-router';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { BrandLogo } from '@/components/brand/BrandLogo';
-import { openHref } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
-import { COMPANY, CREATEDPLAYAS_URL } from '@/constants/content';
+import { COMPANY } from '@/constants/content';
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -30,9 +29,9 @@ export function SiteFooter() {
           <Link href="/contact" style={styles.link}>
             <Text style={styles.linkText}>Contact</Text>
           </Link>
-          <Pressable accessibilityRole="link" onPress={() => openHref(CREATEDPLAYAS_URL)}>
-            <Text style={styles.linkText}>CreatedPlayas</Text>
-          </Pressable>
+          <Link href={'/products' as Href} style={styles.link}>
+            <Text style={styles.linkText}>Products</Text>
+          </Link>
         </View>
       </View>
     </View>

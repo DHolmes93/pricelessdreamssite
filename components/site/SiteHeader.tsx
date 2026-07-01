@@ -4,14 +4,11 @@ import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BrandLogo } from '@/components/brand/BrandLogo';
-import { openHref } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
-import { COMPANY, CREATEDPLAYAS_URL } from '@/constants/content';
-
 const NAV = [
   { href: '/', label: 'Home' },
+  { href: '/products', label: 'Products' },
   { href: '/contact', label: 'Contact' },
-  { href: CREATEDPLAYAS_URL, label: 'CreatedPlayas', external: true },
 ] as const;
 
 export function SiteHeader() {
@@ -41,20 +38,8 @@ export function SiteHeader() {
         </Link>
 
         <View style={styles.nav}>
-          {NAV.map(({ href, label, ...item }) => {
-            const active = 'external' in item ? false : isActive(href);
-
-            if ('external' in item) {
-              return (
-                <Pressable
-                  key={href}
-                  accessibilityRole="link"
-                  onPress={() => openHref(href)}
-                  style={({ pressed }) => [styles.navItem, pressed && styles.pressed]}>
-                  <Text style={styles.navText}>{label}</Text>
-                </Pressable>
-              );
-            }
+          {NAV.map(({ href, label }) => {
+            const active = isActive(href);
 
             return (
               <Pressable
