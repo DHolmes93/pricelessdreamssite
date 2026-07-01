@@ -1,7 +1,6 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-import { ExternalLink } from '@/components/ExternalLink';
+import { ActionButton } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
 
 type ProductCardProps = {
@@ -25,25 +24,21 @@ export function ProductCard({
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.description}>{description}</Text>
       {websiteUrl ? (
-        <ExternalLink href={websiteUrl} asChild>
-          <Pressable style={({ pressed }) => [styles.storeLink, pressed && styles.pressed]}>
-            <FontAwesome name="globe" size={18} color={Brand.navy} />
-            <Text style={styles.storeLinkText}>Visit {name}</Text>
-          </Pressable>
-        </ExternalLink>
+        <ActionButton
+          href={websiteUrl}
+          label={`Visit ${name}`}
+          icon="globe"
+          style={styles.linkButton}
+        />
       ) : null}
       {appStoreUrl ? (
-        <ExternalLink href={appStoreUrl} asChild>
-          <Pressable
-            style={({ pressed }) => [
-              styles.storeLink,
-              websiteUrl && styles.storeLinkSecondary,
-              pressed && styles.pressed,
-            ]}>
-            <FontAwesome name="apple" size={18} color={Brand.navy} />
-            <Text style={styles.storeLinkText}>Download on the App Store</Text>
-          </Pressable>
-        </ExternalLink>
+        <ActionButton
+          href={appStoreUrl}
+          label="Download on the App Store"
+          icon="apple"
+          variant={websiteUrl ? 'secondary' : 'primary'}
+          style={[styles.linkButton, websiteUrl && styles.linkButtonSecondary]}
+        />
       ) : null}
     </View>
   );
@@ -78,29 +73,10 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     color: Brand.textMuted,
   },
-  storeLink: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
+  linkButton: {
     marginTop: 20,
-    alignSelf: 'flex-start',
-    backgroundColor: Brand.gold,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: 10,
   },
-  storeLinkSecondary: {
+  linkButtonSecondary: {
     marginTop: 12,
-    backgroundColor: 'rgba(212, 175, 55, 0.15)',
-    borderWidth: 1,
-    borderColor: 'rgba(212, 175, 55, 0.35)',
-  },
-  storeLinkText: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: Brand.navy,
-  },
-  pressed: {
-    opacity: 0.88,
   },
 });

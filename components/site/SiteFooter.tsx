@@ -1,7 +1,7 @@
 import { Link } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { ExternalLink } from '@/components/ExternalLink';
+import { openHref } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
 import { COMPANY, CREATEDPLAYAS_URL } from '@/constants/content';
 
@@ -20,9 +20,9 @@ export function SiteFooter() {
           <Link href="/contact" style={styles.link}>
             <Text style={styles.linkText}>Contact</Text>
           </Link>
-          <ExternalLink href={CREATEDPLAYAS_URL} style={styles.link}>
+          <Pressable accessibilityRole="link" onPress={() => openHref(CREATEDPLAYAS_URL)}>
             <Text style={styles.linkText}>CreatedPlayas</Text>
-          </ExternalLink>
+          </Pressable>
         </View>
       </View>
     </View>

@@ -1,7 +1,7 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link } from 'expo-router';
-import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 
+import { ActionButton } from '@/components/site/ActionButton';
 import { ProductCard } from '@/components/site/ProductCard';
 import { Screen } from '@/components/site/Screen';
 import { Section } from '@/components/site/Section';
@@ -23,15 +23,12 @@ export default function HomeScreen() {
         <Text style={styles.heroTagline}>{COMPANY.tagline}</Text>
         <Text style={styles.heroDescription}>{COMPANY.description}</Text>
         <View style={styles.heroActions}>
-          <Link href="/contact" asChild>
-            <Pressable
-              style={({ pressed }) => [
-                styles.primaryButton,
-                pressed && styles.buttonPressed,
-              ]}>
-              <Text style={styles.primaryButtonText}>Get in touch</Text>
-            </Pressable>
-          </Link>
+          <ActionButton
+            href="/contact"
+            label="Get in touch"
+            style={styles.primaryButton}
+            textStyle={styles.primaryButtonText}
+          />
         </View>
       </View>
 
@@ -71,15 +68,12 @@ export default function HomeScreen() {
         <Text style={styles.ctaText}>
           Partner with us on your next app, platform, or product launch.
         </Text>
-        <Link href="/contact" asChild>
-          <Pressable
-            style={({ pressed }) => [
-              styles.primaryButton,
-              pressed && styles.buttonPressed,
-            ]}>
-            <Text style={styles.primaryButtonText}>Start a conversation</Text>
-          </Pressable>
-        </Link>
+        <ActionButton
+          href="/contact"
+          label="Start a conversation"
+          style={styles.primaryButton}
+          textStyle={styles.primaryButtonText}
+        />
       </View>
 
       <SiteFooter />
@@ -156,18 +150,12 @@ const styles = StyleSheet.create({
     marginTop: 36,
   },
   primaryButton: {
-    backgroundColor: Brand.gold,
     paddingHorizontal: 28,
     paddingVertical: 16,
     borderRadius: 12,
   },
-  buttonPressed: {
-    opacity: 0.88,
-  },
   primaryButtonText: {
     fontSize: 16,
-    fontWeight: '700',
-    color: Brand.navy,
   },
   grid: {
     flexDirection: 'row',

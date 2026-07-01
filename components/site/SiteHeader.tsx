@@ -1,8 +1,8 @@
-import { Link, usePathname } from 'expo-router';
+import { Href, Link, router, usePathname } from 'expo-router';
 import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { ExternalLink } from '@/components/ExternalLink';
+import { openHref } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
 import { COMPANY, CREATEDPLAYAS_URL } from '@/constants/content';
 
@@ -37,8 +37,24 @@ export function SiteHeader() {
         <View style={styles.nav}>
           {NAV.map(({ href, label, ...item }) => {
             const active = 'external' in item ? false : isActive(href);
-            const navItem = (
+
+            if ('external' in item) {
+              return (
+                <Pressable
+                  key={href}
+                  accessibilityRole="link"
+                  onPress={() => openHref(href)}
+                  style={({ pressed }) => [styles.navItem, pressed && styles.pressed]}>
+                  <Text style={styles.navText}>{label}</Text>
+                </Pressable>
+              );
+            }
+
+            return (
               <Pressable
+                key={href}
+                accessibilityRole="link"
+                onPress={() => router.push(href as Href)}
                 style={({ pressed }) => [
                   styles.navItem,
                   active && styles.navItemActive,
@@ -46,20 +62,6 @@ export function SiteHeader() {
                 ]}>
                 <Text style={[styles.navText, active && styles.navTextActive]}>{label}</Text>
               </Pressable>
-            );
-
-            if ('external' in item) {
-              return (
-                <ExternalLink key={href} href={href} asChild>
-                  {navItem}
-                </ExternalLink>
-              );
-            }
-
-            return (
-              <Link key={href} href={href} asChild>
-                {navItem}
-              </Link>
             );
           })}
         </View>
