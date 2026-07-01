@@ -2,21 +2,17 @@ import { Screen } from '@/components/site/Screen';
 import { Section } from '@/components/site/Section';
 import { ServiceCard } from '@/components/site/ServiceCard';
 import { SiteFooter } from '@/components/site/SiteFooter';
-import { BusinessCardHero } from '@/components/site/BusinessCardHero';
+import { SiteHero } from '@/components/site/SiteHero';
 import { ProductCard } from '@/components/site/ProductCard';
 import { ActionButton } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
-import { COMPANY, PRODUCTS, SERVICES, STATS } from '@/constants/content';
+import { PRODUCTS, SERVICES, STATS } from '@/constants/content';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function HomeScreen() {
   return (
     <Screen>
-      <BusinessCardHero />
-
-      <View style={styles.intro}>
-        <Text style={styles.introText}>{COMPANY.description}</Text>
-      </View>
+      <SiteHero />
 
       <Section
         title="What we build"
@@ -70,19 +66,6 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  intro: {
-    width: '100%',
-    maxWidth: 1100,
-    alignSelf: 'center',
-    paddingHorizontal: 24,
-    paddingBottom: 8,
-  },
-  introText: {
-    fontSize: 17,
-    lineHeight: 28,
-    color: Brand.textMuted,
-    maxWidth: 720,
-  },
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',

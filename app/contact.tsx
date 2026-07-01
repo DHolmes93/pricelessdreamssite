@@ -1,8 +1,8 @@
 import { Linking, StyleSheet, Text, View } from 'react-native';
 
-import { BusinessCardHero } from '@/components/site/BusinessCardHero';
 import { ContactForm } from '@/components/site/ContactForm';
 import { IconBadge } from '@/components/site/IconBadge';
+import { PageHeader } from '@/components/site/PageHeader';
 import { Screen } from '@/components/site/Screen';
 import { Section } from '@/components/site/Section';
 import { SiteFooter } from '@/components/site/SiteFooter';
@@ -15,15 +15,10 @@ export default function ContactScreen() {
 
   return (
     <Screen>
-      <BusinessCardHero />
-
-      <View style={styles.header}>
-        <Text style={styles.title}>Contact us</Text>
-        <Text style={styles.subtitle}>
-          Tell us about your project, partnership, or product idea. We typically respond
-          within one business day.
-        </Text>
-      </View>
+      <PageHeader
+        title="Contact us"
+        subtitle="Tell us about your project, partnership, or product idea. We typically respond within one business day."
+      />
 
       <View style={styles.layout}>
         <Section style={styles.formSection}>
@@ -31,6 +26,12 @@ export default function ContactScreen() {
         </Section>
 
         <View style={styles.sidebar}>
+          <View style={styles.infoCard}>
+            <Text style={styles.sidebarLabel}>{COMPANY.founder.name}</Text>
+            <Text style={styles.sidebarTitle}>{COMPANY.founder.title}</Text>
+            <View style={styles.rule} />
+          </View>
+
           <View style={styles.infoCard}>
             <IconBadge icon="envelope" label={COMPANY.email} />
             <Text style={styles.infoAction} onPress={openEmail}>
@@ -50,8 +51,7 @@ export default function ContactScreen() {
             </Text>
           </View>
           <View style={styles.rolesCard}>
-            <Text style={styles.rolesTitle}>{COMPANY.founder.name}</Text>
-            <Text style={styles.rolesSubtitle}>{COMPANY.founder.title}</Text>
+            <Text style={styles.rolesTitle}>What we bring</Text>
             <View style={styles.rolesList}>
               {FOUNDER_ROLES.map((role) => (
                 <IconBadge key={role.label} icon={role.icon} label={role.label} variant="onDark" />
@@ -67,27 +67,6 @@ export default function ContactScreen() {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    width: '100%',
-    maxWidth: 1100,
-    alignSelf: 'center',
-    paddingHorizontal: 24,
-    paddingTop: 16,
-    paddingBottom: 8,
-  },
-  title: {
-    fontSize: 40,
-    fontWeight: '800',
-    color: Brand.navy,
-    letterSpacing: -0.5,
-  },
-  subtitle: {
-    marginTop: 12,
-    fontSize: 17,
-    lineHeight: 26,
-    color: Brand.textMuted,
-    maxWidth: 560,
-  },
   layout: {
     width: '100%',
     maxWidth: 1100,
@@ -96,17 +75,39 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 32,
+    backgroundColor: Brand.offWhite,
   },
   formSection: {
     flex: 2,
     minWidth: 300,
-    paddingVertical: 24,
+    paddingVertical: 32,
+    backgroundColor: 'transparent',
   },
   sidebar: {
     flex: 1,
     minWidth: 260,
     gap: 16,
-    paddingVertical: 24,
+    paddingVertical: 32,
+  },
+  sidebarLabel: {
+    fontSize: 20,
+    fontWeight: '800',
+    color: Brand.navy,
+    letterSpacing: 0.3,
+  },
+  sidebarTitle: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: Brand.blue,
+    letterSpacing: 1.4,
+    marginTop: 4,
+  },
+  rule: {
+    width: 48,
+    height: 3,
+    borderRadius: 999,
+    backgroundColor: Brand.blue,
+    marginTop: 12,
   },
   infoCard: {
     backgroundColor: Brand.white,
@@ -133,19 +134,13 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   rolesTitle: {
-    fontSize: 18,
-    fontWeight: '800',
-    color: Brand.white,
-    letterSpacing: 0.6,
-  },
-  rolesSubtitle: {
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: '700',
     color: Brand.blueLight,
     letterSpacing: 1.2,
+    textTransform: 'uppercase',
   },
   rolesList: {
     gap: 10,
-    marginTop: 4,
   },
 });
