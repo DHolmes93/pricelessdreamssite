@@ -24,7 +24,7 @@ export function Screen({ children }: ScreenProps) {
 const styles = StyleSheet.create({
   scroll: {
     flex: 1,
-    backgroundColor: Brand.navy,
+    backgroundColor: Brand.offWhite,
   },
   content: {
     flexGrow: 1,

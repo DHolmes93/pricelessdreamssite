@@ -115,10 +115,10 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: '600',
-    color: Brand.text,
+    color: Brand.navy,
   },
   input: {
-    backgroundColor: Brand.card,
+    backgroundColor: Brand.white,
     borderWidth: 1,
     borderColor: Brand.border,
     borderRadius: 12,
@@ -133,10 +133,10 @@ const styles = StyleSheet.create({
   },
   button: {
     alignSelf: 'flex-start',
-    backgroundColor: Brand.gold,
+    backgroundColor: Brand.blue,
     paddingHorizontal: 28,
     paddingVertical: 16,
-    borderRadius: 12,
+    borderRadius: 999,
     marginTop: 8,
   },
   buttonPressed: {
@@ -145,6 +145,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     fontWeight: '700',
-    color: Brand.navy,
+    color: Brand.white,
   },
 });

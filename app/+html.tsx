@@ -30,14 +30,14 @@ html, body, #root {
   padding: 0;
 }
 body {
-  background-color: #0a0e1a;
-  color: #f4f6fb;
+  background-color: #F7F9FC;
+  color: #1B2B39;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 input, textarea {
   outline: none;
 }
 input:focus, textarea:focus {
-  border-color: rgba(212, 175, 55, 0.5) !important;
+  border-color: rgba(43, 108, 176, 0.45) !important;
 }
 `;

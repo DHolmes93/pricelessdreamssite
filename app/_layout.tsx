@@ -1,4 +1,4 @@
-import { DarkTheme, ThemeProvider } from '@react-navigation/native';
+import { ThemeProvider, DefaultTheme } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -15,12 +15,12 @@ export { ErrorBoundary } from 'expo-router';
 SplashScreen.preventAutoHideAsync();
 
 const pricelessTheme = {
-  ...DarkTheme,
+  ...DefaultTheme,
   colors: {
-    ...DarkTheme.colors,
-    primary: Brand.gold,
-    background: Brand.navy,
-    card: Brand.navyLight,
+    ...DefaultTheme.colors,
+    primary: Brand.blue,
+    background: Brand.offWhite,
+    card: Brand.white,
     text: Brand.text,
     border: Brand.border,
   },
@@ -45,12 +45,12 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <View style={{ flex: 1, backgroundColor: Brand.navy }}>
+      <View style={{ flex: 1, backgroundColor: Brand.offWhite }}>
         <ThemeProvider value={pricelessTheme}>
           <Stack
             screenOptions={{
               header: () => <SiteHeader />,
-              contentStyle: { flex: 1, backgroundColor: Brand.navy },
+              contentStyle: { flex: 1, backgroundColor: Brand.offWhite },
             }}>
             <Stack.Screen name="index" />
             <Stack.Screen name="contact" />

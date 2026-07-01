@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { BrandLogo } from '@/components/brand/BrandLogo';
 import { openHref } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
 import { COMPANY, CREATEDPLAYAS_URL } from '@/constants/content';
@@ -11,8 +12,17 @@ export function SiteFooter() {
   return (
     <View style={styles.footer}>
       <View style={styles.inner}>
-        <Text style={styles.logo}>{COMPANY.name}</Text>
-        <Text style={styles.copy}>© {year} {COMPANY.name}. All rights reserved.</Text>
+        <View style={styles.brandRow}>
+          <BrandLogo size={36} variant="light" />
+          <View>
+            <Text style={styles.logoTop}>PRICELESS</Text>
+            <Text style={styles.logoBottom}>DREAMS</Text>
+          </View>
+        </View>
+        <Text style={styles.copy}>
+          © {year} {COMPANY.name}. All rights reserved.
+        </Text>
+        <Text style={styles.website}>{COMPANY.website}</Text>
         <View style={styles.links}>
           <Link href="/" style={styles.link}>
             <Text style={styles.linkText}>Home</Text>
@@ -32,10 +42,10 @@ export function SiteFooter() {
 const styles = StyleSheet.create({
   footer: {
     borderTopWidth: 1,
-    borderTopColor: Brand.border,
-    backgroundColor: Brand.navyLight,
-    paddingVertical: 40,
-    marginTop: 24,
+    borderTopColor: Brand.borderOnDark,
+    backgroundColor: Brand.navy,
+    paddingVertical: 44,
+    marginTop: 0,
   },
   inner: {
     width: '100%',
@@ -45,14 +55,33 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
   },
-  logo: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: Brand.gold,
+  brandRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  logoTop: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: Brand.white,
+    letterSpacing: 1.6,
+    lineHeight: 14,
+  },
+  logoBottom: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: Brand.white,
+    letterSpacing: 1.6,
+    lineHeight: 14,
   },
   copy: {
     fontSize: 14,
-    color: Brand.textMuted,
+    color: Brand.textMutedOnDark,
+  },
+  website: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: Brand.blueLight,
   },
   links: {
     flexDirection: 'row',
@@ -62,7 +91,7 @@ const styles = StyleSheet.create({
   link: {},
   linkText: {
     fontSize: 15,
-    color: Brand.violetMuted,
-    fontWeight: '500',
+    color: Brand.blueLight,
+    fontWeight: '600',
   },
 });

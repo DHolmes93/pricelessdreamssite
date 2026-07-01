@@ -1,40 +1,27 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-
-import { ActionButton } from '@/components/site/ActionButton';
-import { ProductCard } from '@/components/site/ProductCard';
 import { Screen } from '@/components/site/Screen';
 import { Section } from '@/components/site/Section';
 import { ServiceCard } from '@/components/site/ServiceCard';
 import { SiteFooter } from '@/components/site/SiteFooter';
+import { BusinessCardHero } from '@/components/site/BusinessCardHero';
+import { ProductCard } from '@/components/site/ProductCard';
+import { ActionButton } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
 import { COMPANY, PRODUCTS, SERVICES, STATS } from '@/constants/content';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function HomeScreen() {
   return (
     <Screen>
-      <View style={styles.hero}>
-        <View style={styles.heroGlow} />
-        <View style={styles.heroBadge}>
-          <FontAwesome name="rocket" size={14} color={Brand.gold} />
-          <Text style={styles.heroBadgeText}>Tech Enterprise</Text>
-        </View>
-        <Text style={styles.heroTitle}>{COMPANY.name}</Text>
-        <Text style={styles.heroTagline}>{COMPANY.tagline}</Text>
-        <Text style={styles.heroDescription}>{COMPANY.description}</Text>
-        <View style={styles.heroActions}>
-          <ActionButton
-            href="/contact"
-            label="Get in touch"
-            style={styles.primaryButton}
-            textStyle={styles.primaryButtonText}
-          />
-        </View>
+      <BusinessCardHero />
+
+      <View style={styles.intro}>
+        <Text style={styles.introText}>{COMPANY.description}</Text>
       </View>
 
       <Section
         title="What we build"
-        subtitle="From mobile apps to cloud platforms—we design, engineer, and ship products at scale.">
+        subtitle="From mobile apps to cloud platforms—we design, engineer, and ship products at scale."
+        variant="light">
         <View style={styles.grid}>
           {SERVICES.map((service) => (
             <ServiceCard key={service.title} {...service} />
@@ -55,7 +42,8 @@ export default function HomeScreen() {
 
       <Section
         title="Our products"
-        subtitle="A growing portfolio of apps, platforms, and tools—plus new ventures from our labs.">
+        subtitle="A growing portfolio of apps, platforms, and tools—plus new ventures from our labs."
+        variant="light">
         <View style={styles.productGrid}>
           {PRODUCTS.map((product) => (
             <ProductCard key={product.name} {...product} />
@@ -82,80 +70,18 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  hero: {
+  intro: {
     width: '100%',
     maxWidth: 1100,
     alignSelf: 'center',
     paddingHorizontal: 24,
-    paddingTop: 40,
-    paddingBottom: 64,
-    position: 'relative',
-    overflow: 'hidden',
+    paddingBottom: 8,
   },
-  heroGlow: {
-    position: 'absolute',
-    top: -80,
-    right: -40,
-    width: 320,
-    height: 320,
-    borderRadius: 160,
-    backgroundColor: Brand.violet,
-    opacity: 0.15,
-  },
-  heroBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    gap: 8,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 999,
-    backgroundColor: 'rgba(212, 175, 55, 0.12)',
-    borderWidth: 1,
-    borderColor: 'rgba(212, 175, 55, 0.25)',
-    marginBottom: 24,
-  },
-  heroBadgeText: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: Brand.goldLight,
-    letterSpacing: 0.5,
-  },
-  heroTitle: {
-    fontSize: Platform.select({ web: 56, default: 42 }),
-    fontWeight: '800',
-    color: Brand.text,
-    letterSpacing: -1,
-    lineHeight: Platform.select({ web: 64, default: 48 }),
-  },
-  heroTagline: {
-    marginTop: 16,
-    fontSize: Platform.select({ web: 22, default: 18 }),
-    fontWeight: '600',
-    color: Brand.gold,
-    lineHeight: 30,
-    maxWidth: 640,
-  },
-  heroDescription: {
-    marginTop: 20,
+  introText: {
     fontSize: 17,
     lineHeight: 28,
     color: Brand.textMuted,
-    maxWidth: 600,
-  },
-  heroActions: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 16,
-    marginTop: 36,
-  },
-  primaryButton: {
-    paddingHorizontal: 28,
-    paddingVertical: 16,
-    borderRadius: 12,
-  },
-  primaryButtonText: {
-    fontSize: 16,
+    maxWidth: 720,
   },
   grid: {
     flexDirection: 'row',
@@ -163,11 +89,8 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   statsBand: {
-    backgroundColor: Brand.navyLight,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: Brand.border,
-    paddingVertical: 40,
+    backgroundColor: Brand.navy,
+    paddingVertical: 44,
   },
   statsInner: {
     width: '100%',
@@ -187,12 +110,12 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 36,
     fontWeight: '800',
-    color: Brand.gold,
+    color: Brand.blueLight,
   },
   statLabel: {
     marginTop: 6,
     fontSize: 14,
-    color: Brand.textMuted,
+    color: Brand.textMutedOnDark,
     textAlign: 'center',
   },
   productGrid: {
@@ -208,16 +131,25 @@ const styles = StyleSheet.create({
     paddingVertical: 56,
     alignItems: 'flex-start',
     gap: 16,
+    backgroundColor: Brand.offWhite,
   },
   ctaTitle: {
     fontSize: 28,
     fontWeight: '700',
-    color: Brand.text,
+    color: Brand.navy,
   },
   ctaText: {
     fontSize: 17,
     color: Brand.textMuted,
     maxWidth: 480,
     lineHeight: 26,
+  },
+  primaryButton: {
+    paddingHorizontal: 28,
+    paddingVertical: 16,
+    borderRadius: 999,
+  },
+  primaryButtonText: {
+    fontSize: 16,
   },
 });

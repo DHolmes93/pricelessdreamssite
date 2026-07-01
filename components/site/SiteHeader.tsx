@@ -1,7 +1,9 @@
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Href, Link, router, usePathname } from 'expo-router';
 import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { BrandLogo } from '@/components/brand/BrandLogo';
 import { openHref } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
 import { COMPANY, CREATEDPLAYAS_URL } from '@/constants/content';
@@ -25,12 +27,16 @@ export function SiteHeader() {
     <View
       style={[
         styles.wrapper,
-        { paddingTop: Math.max(insets.top, Platform.OS === 'web' ? 12 : 0) },
+        { paddingTop: Math.max(insets.top, Platform.OS === 'web' ? 10 : 0) },
       ]}>
       <View style={styles.inner}>
         <Link href="/" asChild>
           <Pressable style={({ pressed }) => [styles.logoBtn, pressed && styles.pressed]}>
-            <Text style={styles.logo}>{COMPANY.name}</Text>
+            <BrandLogo size={42} variant="dark" />
+            <View style={styles.logoTextWrap}>
+              <Text style={styles.logoTop}>PRICELESS</Text>
+              <Text style={styles.logoBottom}>DREAMS</Text>
+            </View>
           </Pressable>
         </Link>
 
@@ -72,7 +78,7 @@ export function SiteHeader() {
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: Brand.navyLight,
+    backgroundColor: Brand.white,
     borderBottomWidth: 1,
     borderBottomColor: Brand.border,
     ...Platform.select({
@@ -88,42 +94,55 @@ const styles = StyleSheet.create({
     maxWidth: 1100,
     alignSelf: 'center',
     paddingHorizontal: 24,
-    paddingBottom: 14,
+    paddingBottom: 12,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: 16,
   },
   logoBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
     paddingVertical: 4,
   },
-  logo: {
-    fontSize: 20,
+  logoTextWrap: {
+    gap: 0,
+  },
+  logoTop: {
+    fontSize: 11,
     fontWeight: '800',
-    color: Brand.gold,
-    letterSpacing: -0.3,
+    color: Brand.navy,
+    letterSpacing: 1.4,
+    lineHeight: 13,
+  },
+  logoBottom: {
+    fontSize: 11,
+    fontWeight: '800',
+    color: Brand.navy,
+    letterSpacing: 1.4,
+    lineHeight: 13,
   },
   nav: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: 4,
   },
   navItem: {
-    paddingHorizontal: 16,
+    paddingHorizontal: 14,
     paddingVertical: 10,
-    borderRadius: 8,
+    borderRadius: 999,
   },
   navItemActive: {
-    backgroundColor: 'rgba(212, 175, 55, 0.12)',
+    backgroundColor: Brand.accentSoft,
   },
   navText: {
     fontSize: 15,
-    fontWeight: '500',
+    fontWeight: '600',
     color: Brand.textMuted,
   },
   navTextActive: {
-    color: Brand.gold,
-    fontWeight: '600',
+    color: Brand.blue,
   },
   pressed: {
     opacity: 0.75,

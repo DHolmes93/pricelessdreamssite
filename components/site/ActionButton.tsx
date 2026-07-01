@@ -62,8 +62,21 @@ export function ActionButton({
       ]}>
       {children ?? (
         <>
-          {icon ? <FontAwesome name={icon} size={18} color={Brand.navy} /> : null}
-          <Text style={[styles.label, textStyle]}>{label}</Text>
+          {icon ? (
+            <FontAwesome
+              name={icon}
+              size={18}
+              color={variant === 'primary' ? Brand.white : Brand.blue}
+            />
+          ) : null}
+          <Text
+            style={[
+              styles.label,
+              variant === 'primary' ? styles.labelPrimary : styles.labelSecondary,
+              textStyle,
+            ]}>
+            {label}
+          </Text>
         </>
       )}
     </Pressable>
@@ -81,17 +94,22 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   primary: {
-    backgroundColor: Brand.gold,
+    backgroundColor: Brand.blue,
   },
   secondary: {
-    backgroundColor: 'rgba(212, 175, 55, 0.15)',
+    backgroundColor: Brand.accentSoft,
     borderWidth: 1,
-    borderColor: 'rgba(212, 175, 55, 0.35)',
+    borderColor: 'rgba(43, 108, 176, 0.28)',
   },
   label: {
     fontSize: 14,
     fontWeight: '700',
-    color: Brand.navy,
+  },
+  labelPrimary: {
+    color: Brand.white,
+  },
+  labelSecondary: {
+    color: Brand.blue,
   },
   pressed: {
     opacity: 0.88,

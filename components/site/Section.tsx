@@ -8,16 +8,22 @@ type SectionProps = {
   subtitle?: string;
   children: ReactNode;
   style?: ViewStyle;
-  id?: string;
+  variant?: 'light' | 'muted';
 };
 
-export function Section({ title, subtitle, children, style }: SectionProps) {
+export function Section({ title, subtitle, children, style, variant = 'light' }: SectionProps) {
+  const onMuted = variant === 'muted';
+
   return (
-    <View style={[styles.section, style]}>
+    <View style={[styles.section, onMuted && styles.sectionMuted, style]}>
       {(title || subtitle) && (
         <View style={styles.header}>
-          {title ? <Text style={styles.title}>{title}</Text> : null}
-          {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
+          {title ? (
+            <Text style={[styles.title, onMuted && styles.titleOnDark]}>{title}</Text>
+          ) : null}
+          {subtitle ? (
+            <Text style={[styles.subtitle, onMuted && styles.subtitleOnDark]}>{subtitle}</Text>
+          ) : null}
         </View>
       )}
       {children}
@@ -32,6 +38,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingHorizontal: 24,
     paddingVertical: 48,
+    backgroundColor: Brand.white,
+  },
+  sectionMuted: {
+    backgroundColor: Brand.offWhite,
   },
   header: {
     marginBottom: 32,
@@ -39,8 +49,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: '700',
-    color: Brand.text,
+    color: Brand.navy,
     letterSpacing: -0.5,
+  },
+  titleOnDark: {
+    color: Brand.textOnDark,
   },
   subtitle: {
     marginTop: 12,
@@ -48,5 +61,8 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     color: Brand.textMuted,
     maxWidth: 560,
+  },
+  subtitleOnDark: {
+    color: Brand.textMutedOnDark,
   },
 });

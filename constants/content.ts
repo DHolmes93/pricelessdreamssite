@@ -3,8 +3,23 @@ export const COMPANY = {
   tagline: 'Tech enterprise building apps, platforms, and products that matter.',
   description:
     'We are a technology company focused on shipping mobile apps, web platforms, and innovative digital products—from consumer experiences to enterprise tools.',
-  email: 'ceomiles@pricelessdream.com',
+  email: 'CeoMiles@pricelessdream.com',
+  phone: '215-913-9840',
+  website: 'PricelessDream.com',
+  websiteUrl: 'https://pricelessdream.com',
+  founder: {
+    name: 'Donovan Holmes',
+    title: 'Founder & CEO',
+  },
 } as const;
+
+export const FOUNDER_ROLES = [
+  { icon: 'laptop' as const, label: 'Tech Consultant' },
+  { icon: 'book' as const, label: 'Author' },
+  { icon: 'users' as const, label: 'Relationship Expert' },
+  { icon: 'user' as const, label: 'Life Coach' },
+  { icon: 'code' as const, label: 'Software Engineer' },
+] as const;
 
 export const SERVICES = [
   {
