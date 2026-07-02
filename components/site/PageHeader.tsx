@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { CircuitPattern } from '@/components/brand/CircuitPattern';
 import { Brand } from '@/constants/Colors';
+import { useIsCompact } from '@/hooks/useIsCompact';
 
 type PageHeaderProps = {
   title: string;
@@ -9,11 +10,13 @@ type PageHeaderProps = {
 };
 
 export function PageHeader({ title, subtitle }: PageHeaderProps) {
+  const compact = useIsCompact();
+
   return (
     <View style={styles.wrap}>
       <CircuitPattern />
-      <View style={styles.content}>
-        <Text style={styles.title}>{title}</Text>
+      <View style={[styles.content, compact && styles.contentCompact]}>
+        <Text style={[styles.title, compact && styles.titleCompact]}>{title}</Text>
         {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
         <View style={styles.rule} />
       </View>
@@ -37,11 +40,20 @@ const styles = StyleSheet.create({
     paddingBottom: 36,
     zIndex: 1,
   },
+  contentCompact: {
+    paddingHorizontal: 20,
+    paddingTop: 32,
+    paddingBottom: 28,
+  },
   title: {
     fontSize: 40,
     fontWeight: '800',
     color: Brand.white,
     letterSpacing: 0.4,
+  },
+  titleCompact: {
+    fontSize: 32,
+    letterSpacing: 0.2,
   },
   subtitle: {
     marginTop: 12,

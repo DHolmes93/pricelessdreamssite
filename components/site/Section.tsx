@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { StyleSheet, Text, View, ViewStyle } from 'react-native';
 
 import { Brand } from '@/constants/Colors';
+import { useIsCompact } from '@/hooks/useIsCompact';
 
 type SectionProps = {
   title?: string;
@@ -13,17 +14,14 @@ type SectionProps = {
 
 export function Section({ title, subtitle, children, style, variant = 'light' }: SectionProps) {
   const onMuted = variant === 'muted';
+  const compact = useIsCompact();
 
   return (
-    <View style={[styles.section, onMuted && styles.sectionMuted, style]}>
+    <View style={[styles.section, onMuted && styles.sectionMuted, compact && styles.sectionCompact, style]}>
       {(title || subtitle) && (
-        <View style={styles.header}>
-          {title ? (
-            <Text style={[styles.title, onMuted && styles.titleOnDark]}>{title}</Text>
-          ) : null}
-          {subtitle ? (
-            <Text style={[styles.subtitle, onMuted && styles.subtitleOnDark]}>{subtitle}</Text>
-          ) : null}
+        <View style={[styles.header, compact && styles.headerCompact]}>
+          {title ? <Text style={[styles.title, compact && styles.titleCompact]}>{title}</Text> : null}
+          {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
         </View>
       )}
       {children}
@@ -43,8 +41,15 @@ const styles = StyleSheet.create({
   sectionMuted: {
     backgroundColor: Brand.offWhite,
   },
+  sectionCompact: {
+    paddingHorizontal: 20,
+    paddingVertical: 36,
+  },
   header: {
     marginBottom: 32,
+  },
+  headerCompact: {
+    marginBottom: 24,
   },
   title: {
     fontSize: 32,
@@ -52,8 +57,9 @@ const styles = StyleSheet.create({
     color: Brand.navy,
     letterSpacing: -0.5,
   },
-  titleOnDark: {
-    color: Brand.textOnDark,
+  titleCompact: {
+    fontSize: 26,
+    letterSpacing: -0.3,
   },
   subtitle: {
     marginTop: 12,
@@ -61,8 +67,5 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     color: Brand.textMuted,
     maxWidth: 560,
-  },
-  subtitleOnDark: {
-    color: Brand.textMutedOnDark,
   },
 });

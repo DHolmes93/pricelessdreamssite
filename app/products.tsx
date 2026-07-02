@@ -6,8 +6,10 @@ import { Screen } from '@/components/site/Screen';
 import { Section } from '@/components/site/Section';
 import { SiteFooter } from '@/components/site/SiteFooter';
 import { PRODUCTS } from '@/constants/content';
+import { useIsCompact } from '@/hooks/useIsCompact';
 
 export default function ProductsScreen() {
+  const compact = useIsCompact();
   const books = PRODUCTS.filter((product) => product.category === 'Book');
   const ventures = PRODUCTS.filter((product) => product.category !== 'Book');
 
@@ -18,20 +20,20 @@ export default function ProductsScreen() {
         subtitle="Books, apps, and platforms from Priceless Dreams — written and built by Donovan Holmes."
       />
 
-      <Section title="Books" subtitle="By Donovan Holmes and Bishop Don.">
-        <View style={styles.grid}>
-          {books.map((product) => (
+      <Section title="Apps & platforms" subtitle="Products we own, build, and ship.">
+        <View style={[styles.grid, compact && styles.gridCompact]}>
+          {ventures.map((product) => (
             <ProductCard key={product.name} {...product} />
           ))}
         </View>
       </Section>
 
       <Section
-        title="Apps & platforms"
-        subtitle="Products we own, build, and ship."
+        title="Books"
+        subtitle="By Donovan Holmes and Bishop Don."
         variant="muted">
-        <View style={styles.grid}>
-          {ventures.map((product) => (
+        <View style={[styles.grid, compact && styles.gridCompact]}>
+          {books.map((product) => (
             <ProductCard key={product.name} {...product} />
           ))}
         </View>
@@ -47,5 +49,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 16,
+  },
+  gridCompact: {
+    flexDirection: 'column',
+    gap: 14,
   },
 });

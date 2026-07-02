@@ -31,6 +31,24 @@ npm run android
 - [Expo Router](https://docs.expo.dev/router/introduction/) (file-based routes)
 - [React Native Web](https://necolas.github.io/react-native-web/) for the website
 
+## Deploy to Netlify
+
+1. Import the repo in [Netlify](https://app.netlify.com).
+2. Netlify reads `netlify.toml` automatically — no manual settings needed.
+3. Build command: `npm run build` → publishes static files from `dist/`.
+4. Redirects map `/products` and `/contact` to the `.html` files Expo generates.
+
+```bash
+npm run build   # local check: should create dist/index.html, dist/products.html, etc.
+```
+
+Or deploy from the CLI:
+
+```bash
+npm install -g netlify-cli
+netlify deploy --prod
+```
+
 ## Customize
 
 - Company copy and products: `constants/content.ts`

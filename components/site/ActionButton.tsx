@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: '700',
+    flexShrink: 1,
   },
   labelPrimary: {
     color: Brand.white,

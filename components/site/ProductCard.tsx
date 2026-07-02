@@ -2,6 +2,7 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 
 import { ActionButton } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
+import { useIsCompact } from '@/hooks/useIsCompact';
 
 type ProductCardProps = {
   name: string;
@@ -22,10 +23,11 @@ export function ProductCard({
   websiteUrl,
   amazonUrl,
 }: ProductCardProps) {
+  const compact = useIsCompact();
   const linkCount = [amazonUrl, websiteUrl, appStoreUrl].filter(Boolean).length;
 
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, compact && styles.cardCompact]}>
       <Text style={styles.category}>{category}</Text>
       <Text style={styles.name}>{name}</Text>
       {authors ? <Text style={styles.authors}>by {authors}</Text> : null}
@@ -35,7 +37,7 @@ export function ProductCard({
           href={amazonUrl}
           label="Buy on Amazon"
           icon="book"
-          style={styles.linkButton}
+          style={[styles.linkButton, compact && styles.linkButtonCompact]}
         />
       ) : null}
       {websiteUrl ? (
@@ -44,7 +46,11 @@ export function ProductCard({
           label={`Visit ${name}`}
           icon="globe"
           variant={linkCount > 1 ? 'secondary' : 'primary'}
-          style={[styles.linkButton, amazonUrl && styles.linkButtonSecondary]}
+          style={[
+            styles.linkButton,
+            compact && styles.linkButtonCompact,
+            amazonUrl && styles.linkButtonSecondary,
+          ]}
         />
       ) : null}
       {appStoreUrl ? (
@@ -55,6 +61,7 @@ export function ProductCard({
           variant={amazonUrl || websiteUrl ? 'secondary' : 'primary'}
           style={[
             styles.linkButton,
+            compact && styles.linkButtonCompact,
             (amazonUrl || websiteUrl) && styles.linkButtonSecondary,
           ]}
         />
@@ -85,6 +92,11 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  cardCompact: {
+    flex: undefined,
+    minWidth: undefined,
+    width: '100%',
+  },
   category: {
     fontSize: 12,
     fontWeight: '700',
@@ -114,6 +126,10 @@ const styles = StyleSheet.create({
   linkButton: {
     marginTop: 20,
     borderRadius: 999,
+  },
+  linkButtonCompact: {
+    alignSelf: 'stretch',
+    justifyContent: 'center',
   },
   linkButtonSecondary: {
     marginTop: 12,
