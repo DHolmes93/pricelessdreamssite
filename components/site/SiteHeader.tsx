@@ -29,11 +29,7 @@ export function SiteHeader() {
       <View style={styles.inner}>
         <Link href="/" asChild>
           <Pressable style={({ pressed }) => [styles.logoBtn, pressed && styles.pressed]}>
-            <BrandLogo size={42} variant="dark" />
-            <View style={styles.logoTextWrap}>
-              <Text style={styles.logoTop}>PRICELESS</Text>
-              <Text style={styles.logoBottom}>DREAMS</Text>
-            </View>
+            <BrandLogo variant="dark" compact />
           </Pressable>
         </Link>
 
@@ -88,25 +84,7 @@ const styles = StyleSheet.create({
   logoBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
     paddingVertical: 4,
-  },
-  logoTextWrap: {
-    gap: 0,
-  },
-  logoTop: {
-    fontSize: 11,
-    fontWeight: '800',
-    color: Brand.navy,
-    letterSpacing: 1.4,
-    lineHeight: 13,
-  },
-  logoBottom: {
-    fontSize: 11,
-    fontWeight: '800',
-    color: Brand.navy,
-    letterSpacing: 1.4,
-    lineHeight: 13,
   },
   nav: {
     flexDirection: 'row',

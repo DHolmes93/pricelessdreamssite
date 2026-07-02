@@ -2,6 +2,7 @@ import { Href, Link } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { BrandLogo } from '@/components/brand/BrandLogo';
+import { CircuitPattern } from '@/components/brand/CircuitPattern';
 import { Brand } from '@/constants/Colors';
 import { COMPANY } from '@/constants/content';
 
@@ -10,14 +11,9 @@ export function SiteFooter() {
 
   return (
     <View style={styles.footer}>
+      <CircuitPattern placement="edge" edgeWidth={100} />
       <View style={styles.inner}>
-        <View style={styles.brandRow}>
-          <BrandLogo size={36} variant="light" />
-          <View>
-            <Text style={styles.logoTop}>PRICELESS</Text>
-            <Text style={styles.logoBottom}>DREAMS</Text>
-          </View>
-        </View>
+        <BrandLogo variant="light" compact />
         <Text style={styles.copy}>
           © {year} {COMPANY.name}. All rights reserved.
         </Text>
@@ -42,9 +38,11 @@ const styles = StyleSheet.create({
   footer: {
     borderTopWidth: 1,
     borderTopColor: Brand.borderOnDark,
-    backgroundColor: Brand.navy,
+    backgroundColor: Brand.navyDark,
     paddingVertical: 44,
     marginTop: 0,
+    position: 'relative',
+    overflow: 'hidden',
   },
   inner: {
     width: '100%',
@@ -53,25 +51,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     alignItems: 'center',
     gap: 12,
-  },
-  brandRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-  },
-  logoTop: {
-    fontSize: 12,
-    fontWeight: '800',
-    color: Brand.white,
-    letterSpacing: 1.6,
-    lineHeight: 14,
-  },
-  logoBottom: {
-    fontSize: 12,
-    fontWeight: '800',
-    color: Brand.white,
-    letterSpacing: 1.6,
-    lineHeight: 14,
+    zIndex: 1,
   },
   copy: {
     fontSize: 14,

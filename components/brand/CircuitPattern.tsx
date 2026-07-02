@@ -1,38 +1,86 @@
-import { StyleSheet, View } from 'react-native';
-import Svg, { Circle, Line, Path } from 'react-native-svg';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 
+import { CircuitCorner } from '@/components/brand/CircuitCorner';
+import { CircuitEdge } from '@/components/brand/CircuitEdge';
 import { Brand } from '@/constants/Colors';
 
+type CircuitPlacement = 'diagonal' | 'left' | 'right' | 'edge';
+
+type CircuitCornerName = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
+
 type CircuitPatternProps = {
-  color?: string;
-  opacity?: number;
+  variant?: 'onDark' | 'card';
+  framed?: boolean;
+  cornerSize?: number;
+  inset?: number;
+  placement?: CircuitPlacement;
+  edgeWidth?: number;
 };
 
+const PLACEMENT_CORNERS: Record<Exclude<CircuitPlacement, 'edge'>, CircuitCornerName[]> = {
+  diagonal: ['topLeft', 'bottomRight'],
+  left: ['topLeft', 'bottomLeft'],
+  right: ['topRight', 'bottomRight'],
+};
+
+function cornerStyle(corner: CircuitCornerName, inset: number): ViewStyle {
+  if (corner === 'topLeft') return { top: inset, left: inset };
+  if (corner === 'topRight') return { top: inset, right: inset };
+  if (corner === 'bottomLeft') return { bottom: inset, left: inset };
+  return { bottom: inset, right: inset };
+}
+
 export function CircuitPattern({
-  color = Brand.blueLight,
-  opacity = 0.18,
+  variant = 'onDark',
+  framed = false,
+  cornerSize = 168,
+  inset = 20,
+  placement = 'edge',
+  edgeWidth = 96,
 }: CircuitPatternProps) {
+  const cornerVariant = variant === 'card' ? 'card' : 'onDark';
+
+  if (placement === 'edge') {
+    return (
+      <View style={styles.wrap} pointerEvents="none">
+        <View style={styles.sheen} />
+        <View style={styles.depth} />
+        <CircuitEdge variant={cornerVariant} size={edgeWidth} side="left" />
+        <CircuitEdge variant={cornerVariant} size={edgeWidth} side="bottom" />
+      </View>
+    );
+  }
+
+  const corners = PLACEMENT_CORNERS[placement];
+
   return (
     <View style={styles.wrap} pointerEvents="none">
-      <Svg width="100%" height="100%" viewBox="0 0 240 180" preserveAspectRatio="xMinYMax slice">
-        <Circle cx="28" cy="148" r="5" fill={color} opacity={opacity} />
-        <Line x1="28" y1="148" x2="72" y2="148" stroke={color} strokeWidth="2" opacity={opacity} />
-        <Line x1="72" y1="148" x2="72" y2="118" stroke={color} strokeWidth="2" opacity={opacity} />
-        <Circle cx="72" cy="118" r="4" fill={color} opacity={opacity} />
-        <Line x1="72" y1="118" x2="108" y2="118" stroke={color} strokeWidth="2" opacity={opacity} />
-        <Path
-          d="M108 118H132V94"
-          stroke={color}
-          strokeWidth="2"
-          opacity={opacity}
-          fill="none"
+      {framed ? (
+        <View
+          style={[
+            styles.frame,
+            {
+              top: inset,
+              left: inset,
+              right: inset,
+              bottom: inset,
+            },
+          ]}
         />
-        <Circle cx="132" cy="94" r="4" fill={color} opacity={opacity} />
-        <Line x1="28" y1="148" x2="28" y2="168" stroke={color} strokeWidth="2" opacity={opacity} />
-        <Circle cx="28" cy="168" r="3" fill={color} opacity={opacity} />
-        <Line x1="48" y1="128" x2="88" y2="88" stroke={color} strokeWidth="1.5" opacity={opacity * 0.8} />
-        <Circle cx="88" cy="88" r="3" fill={color} opacity={opacity * 0.8} />
-      </Svg>
+      ) : null}
+
+      <View style={styles.sheen} />
+      <View style={styles.depth} />
+
+      {corners.map((corner) => (
+        <CircuitCorner
+          key={corner}
+          corner={corner}
+          variant={cornerVariant}
+          size={cornerSize}
+          style={cornerStyle(corner, inset)}
+        />
+      ))}
     </View>
   );
 }
@@ -41,5 +89,27 @@ const styles = StyleSheet.create({
   wrap: {
     ...StyleSheet.absoluteFillObject,
     overflow: 'hidden',
+  },
+  frame: {
+    position: 'absolute',
+    borderRadius: 22,
+    borderWidth: 1,
+    borderColor: Brand.borderOnDark,
+  },
+  sheen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '42%',
+    backgroundColor: 'rgba(255, 255, 255, 0.035)',
+  },
+  depth: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: '38%',
+    backgroundColor: 'rgba(0, 0, 0, 0.14)',
   },
 });

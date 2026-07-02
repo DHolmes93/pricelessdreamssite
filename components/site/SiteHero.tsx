@@ -1,7 +1,6 @@
 import { Platform, StyleSheet, Text, View } from 'react-native';
 
 import { BrandDivider } from '@/components/brand/BrandDivider';
-import { BrandLogo } from '@/components/brand/BrandLogo';
 import { CircuitPattern } from '@/components/brand/CircuitPattern';
 import { ActionButton } from '@/components/site/ActionButton';
 import { IconBadge } from '@/components/site/IconBadge';
@@ -11,20 +10,17 @@ import { COMPANY, FOUNDER_ROLES } from '@/constants/content';
 export function SiteHero() {
   return (
     <View style={styles.hero}>
-      <View style={styles.inner}>
-        <View style={styles.brandSide}>
-          <CircuitPattern />
-          <View style={styles.brandContent}>
-            <BrandLogo
-              size={Platform.select({ web: 128, default: 104 }) ?? 104}
-              variant="light"
-              showWordmark
-            />
-            <BrandDivider />
-            <Text style={styles.website}>{COMPANY.website}</Text>
-          </View>
+      <View style={styles.brandSide}>
+        <CircuitPattern placement="edge" edgeWidth={100} />
+        <View style={styles.brandContent}>
+          <Text style={styles.brandNameTop}>PRICELESS</Text>
+          <Text style={styles.brandNameBottom}>DREAMS</Text>
+          <BrandDivider width="64%" />
+          <Text style={styles.website}>{COMPANY.website}</Text>
         </View>
+      </View>
 
+      <View style={styles.contentColumn}>
         <View style={styles.contentSide}>
           {Platform.OS === 'web' ? <View style={styles.curveAccent} /> : null}
 
@@ -53,44 +49,67 @@ export function SiteHero() {
 const styles = StyleSheet.create({
   hero: {
     width: '100%',
-    backgroundColor: Brand.navy,
-  },
-  inner: {
-    width: '100%',
-    maxWidth: 1200,
-    alignSelf: 'center',
+    backgroundColor: Brand.navyDark,
     flexDirection: Platform.select({ web: 'row', default: 'column' }),
-    minHeight: Platform.select({ web: 480, default: undefined }),
+    minHeight: Platform.select({ web: 520, default: undefined }),
   },
   brandSide: {
-    flex: Platform.select({ web: 0.4, default: undefined }),
-    backgroundColor: Brand.navy,
-    paddingHorizontal: 32,
-    paddingVertical: Platform.select({ web: 56, default: 40 }),
+    flex: Platform.select({ web: 0.42, default: undefined }),
+    backgroundColor: Brand.navyDark,
+    paddingHorizontal: Platform.select({ web: 40, default: 28 }),
+    paddingVertical: Platform.select({ web: 64, default: 44 }),
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
     overflow: 'hidden',
+    minHeight: Platform.select({ web: 520, default: 340 }),
+    borderRightWidth: Platform.select({ web: 1, default: 0 }),
+    borderRightColor: Brand.borderOnDark,
+  },
+  contentColumn: {
+    flex: 1,
+    backgroundColor: Brand.white,
+    minWidth: 0,
+    justifyContent: 'center',
   },
   brandContent: {
     alignItems: 'center',
-    gap: 18,
+    gap: 16,
     zIndex: 1,
+    maxWidth: 300,
+    paddingHorizontal: 8,
+  },
+  brandNameTop: {
+    fontSize: Platform.select({ web: 28, default: 24 }),
+    fontWeight: '800',
+    color: Brand.white,
+    letterSpacing: 4,
+  },
+  brandNameBottom: {
+    marginTop: -2,
+    fontSize: Platform.select({ web: 28, default: 24 }),
+    fontWeight: '800',
+    color: Brand.white,
+    letterSpacing: 4,
   },
   website: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
     color: Brand.textMutedOnDark,
-    letterSpacing: 0.4,
+    letterSpacing: 1.1,
+    textTransform: 'uppercase',
   },
   contentSide: {
-    flex: 1,
+    width: '100%',
+    maxWidth: 760,
+    alignSelf: Platform.select({ web: 'center', default: 'stretch' }),
     backgroundColor: Brand.white,
     paddingHorizontal: 32,
     paddingVertical: Platform.select({ web: 56, default: 36 }),
     gap: 12,
     justifyContent: 'center',
     position: 'relative',
+    flex: 1,
   },
   curveAccent: {
     position: 'absolute',

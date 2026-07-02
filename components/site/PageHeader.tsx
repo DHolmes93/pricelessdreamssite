@@ -14,7 +14,7 @@ export function PageHeader({ title, subtitle }: PageHeaderProps) {
 
   return (
     <View style={styles.wrap}>
-      <CircuitPattern />
+      <CircuitPattern placement="edge" edgeWidth={100} />
       <View style={[styles.content, compact && styles.contentCompact]}>
         <Text style={[styles.title, compact && styles.titleCompact]}>{title}</Text>
         {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
@@ -27,7 +27,7 @@ export function PageHeader({ title, subtitle }: PageHeaderProps) {
 const styles = StyleSheet.create({
   wrap: {
     width: '100%',
-    backgroundColor: Brand.navy,
+    backgroundColor: Brand.navyDark,
     position: 'relative',
     overflow: 'hidden',
   },
