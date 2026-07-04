@@ -116,7 +116,7 @@ export const PRODUCTS: Product[] = [
     description:
       'Your AI co-founder for growth. BrandLxft learns your business, studies your market, finds revenue opportunities, and tells you exactly what to do next.',
     logo: require('@/assets/images/brandlxft.png'),
-    websiteUrl: 'https://brandlxft.com',
+    websiteUrl: 'https://www.brandlxft.com',
     comingSoon: true,
   },
 ];
