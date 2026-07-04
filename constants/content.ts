@@ -1,3 +1,5 @@
+import type { ImageSourcePropType } from 'react-native';
+
 export const COMPANY = {
   name: 'Priceless Dreams',
   tagline: 'Tech enterprise building apps, platforms, and products that matter.',
@@ -44,13 +46,14 @@ export const SERVICES = [
   },
 ] as const;
 
-export const CREATEDPLAYAS_URL = 'https://createdplayas.com' as const;
+export const CONVO_LAB_URL = 'https://createdplayas.com' as const;
 
 export type Product = {
   name: string;
   category: string;
   description: string;
   authors?: string;
+  logo?: ImageSourcePropType;
   appStoreUrl?: string;
   websiteUrl?: string;
   amazonUrl?: string;
@@ -74,17 +77,19 @@ export const PRODUCTS: Product[] = [
     amazonUrl: 'https://www.amazon.com/dp/1533083150',
   },
   {
-    name: 'CreatedPlayas',
+    name: 'The Convo Lab',
     category: 'Owned & operated',
     description:
       'Live conversation practice for men who freeze up mid-conversation. Run reps on camera, recover when your mind goes blank, and build confidence through deliberate practice.',
-    websiteUrl: CREATEDPLAYAS_URL,
+    logo: require('@/assets/images/the-convo-lab.png'),
+    websiteUrl: CONVO_LAB_URL,
   },
   {
     name: 'LuvSense',
     category: 'App',
     description:
       'Your relationship journey deserves personalized guidance. LuvSense is a comprehensive relationship wellness platform with intelligent insights—not guesswork.',
+    logo: require('@/assets/images/luvsense.png'),
     appStoreUrl: 'https://apps.apple.com/us/app/luvsense/id6747411728',
   },
   {
@@ -92,6 +97,7 @@ export const PRODUCTS: Product[] = [
     category: 'App',
     description:
       'Find your next opportunity—whether that’s a career move, a steady job, or a side hustle you can start today. Answer a few questions and discover your path.',
+    logo: require('@/assets/images/opplinq.png'),
     appStoreUrl: 'https://apps.apple.com/us/app/opplinq/id6759388798',
   },
 ];

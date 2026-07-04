@@ -1,4 +1,4 @@
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Image, ImageSourcePropType, Platform, StyleSheet, Text, View } from 'react-native';
 
 import { ActionButton } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
@@ -9,6 +9,7 @@ type ProductCardProps = {
   category: string;
   description: string;
   authors?: string;
+  logo?: ImageSourcePropType;
   appStoreUrl?: string;
   websiteUrl?: string;
   amazonUrl?: string;
@@ -19,6 +20,7 @@ export function ProductCard({
   category,
   description,
   authors,
+  logo,
   appStoreUrl,
   websiteUrl,
   amazonUrl,
@@ -28,6 +30,16 @@ export function ProductCard({
 
   return (
     <View style={[styles.card, compact && styles.cardCompact]}>
+      {logo ? (
+        <View style={styles.logoWrap}>
+          <Image
+            source={logo}
+            style={styles.logo}
+            resizeMode="cover"
+            accessibilityLabel={`${name} logo`}
+          />
+        </View>
+      ) : null}
       <Text style={styles.category}>{category}</Text>
       <Text style={styles.name}>{name}</Text>
       {authors ? <Text style={styles.authors}>by {authors}</Text> : null}
@@ -96,6 +108,21 @@ const styles = StyleSheet.create({
     flex: undefined,
     minWidth: undefined,
     width: '100%',
+  },
+  logoWrap: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 132,
+    marginBottom: 16,
+    borderRadius: 14,
+    backgroundColor: Brand.offWhite,
+    borderWidth: 1,
+    borderColor: Brand.border,
+    overflow: 'hidden',
+  },
+  logo: {
+    width: '100%',
+    height: '100%',
   },
   category: {
     fontSize: 12,
