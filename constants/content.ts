@@ -44,9 +44,14 @@ export const SERVICES = [
     title: 'Cloud & APIs',
     description: 'Backend services, integrations, and infrastructure you can trust.',
   },
+  {
+    icon: 'briefcase' as const,
+    title: 'Consulting',
+    description: 'Strategic tech guidance, architecture reviews, and hands-on support for teams shipping digital products.',
+  },
 ] as const;
 
-export const CONVO_LAB_URL = 'https://createdplayas.com' as const;
+export const CONVO_LAB_URL = 'https://theconvolab.com' as const;
 
 export type Product = {
   name: string;

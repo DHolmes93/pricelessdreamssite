@@ -59,7 +59,7 @@ netlify deploy --prod
 
 - [Once A Slave Always A Slave](https://www.amazon.com/dp/B09FRZZP58) — by Bishop Don · Donovan Holmes
 - [Real Man Or Real Nigga](https://www.amazon.com/dp/1533083150) — by Donovan Holmes · Bishop Don
-- [The Convo Lab](https://createdplayas.com) — live conversation practice platform (owned & operated)
+- [The Convo Lab](https://theconvolab.com) — live conversation practice platform (owned & operated)
 - [LuvSense](https://apps.apple.com/us/app/luvsense/id6747411728) — relationship wellness app
 - [Debonaé](https://debonae.com) — beauty app (coming soon)
 - [BrandLxft](https://www.brandlxft.com) — AI co-founder for growth (preview live, full launch coming soon)
