@@ -10,6 +10,7 @@ type ProductCardProps = {
   description: string;
   authors?: string;
   logo?: ImageSourcePropType;
+  comingSoon?: boolean;
   appStoreUrl?: string;
   websiteUrl?: string;
   amazonUrl?: string;
@@ -21,6 +22,7 @@ export function ProductCard({
   description,
   authors,
   logo,
+  comingSoon,
   appStoreUrl,
   websiteUrl,
   amazonUrl,
@@ -40,7 +42,14 @@ export function ProductCard({
           />
         </View>
       ) : null}
-      <Text style={styles.category}>{category}</Text>
+      <View style={styles.metaRow}>
+        <Text style={styles.category}>{category}</Text>
+        {comingSoon ? (
+          <View style={styles.comingSoonBadge}>
+            <Text style={styles.comingSoonText}>Coming soon</Text>
+          </View>
+        ) : null}
+      </View>
       <Text style={styles.name}>{name}</Text>
       {authors ? <Text style={styles.authors}>by {authors}</Text> : null}
       <Text style={styles.description}>{description}</Text>
@@ -55,7 +64,7 @@ export function ProductCard({
       {websiteUrl ? (
         <ActionButton
           href={websiteUrl}
-          label={`Visit ${name}`}
+          label={comingSoon ? 'Preview site' : `Visit ${name}`}
           icon="globe"
           variant={linkCount > 1 ? 'secondary' : 'primary'}
           style={[
@@ -123,6 +132,27 @@ const styles = StyleSheet.create({
   logo: {
     width: '100%',
     height: '100%',
+  },
+  metaRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  comingSoonBadge: {
+    backgroundColor: Brand.accentSoft,
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderWidth: 1,
+    borderColor: 'rgba(43, 108, 176, 0.28)',
+  },
+  comingSoonText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: Brand.blue,
+    textTransform: 'uppercase',
+    letterSpacing: 0.8,
   },
   category: {
     fontSize: 12,

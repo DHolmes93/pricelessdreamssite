@@ -54,6 +54,7 @@ export type Product = {
   description: string;
   authors?: string;
   logo?: ImageSourcePropType;
+  comingSoon?: boolean;
   appStoreUrl?: string;
   websiteUrl?: string;
   amazonUrl?: string;
@@ -99,6 +100,23 @@ export const PRODUCTS: Product[] = [
       'Find your next opportunity—whether that’s a career move, a steady job, or a side hustle you can start today. Answer a few questions and discover your path.',
     logo: require('@/assets/images/opplinq.png'),
     appStoreUrl: 'https://apps.apple.com/us/app/opplinq/id6759388798',
+  },
+  {
+    name: 'Debonaé',
+    category: 'App',
+    description:
+      'The beauty app for shopping diverse-owned brands, consulting licensed professionals, and building community.',
+    websiteUrl: 'https://debonae.com',
+    comingSoon: true,
+  },
+  {
+    name: 'BrandLxft',
+    category: 'Platform',
+    description:
+      'Your AI co-founder for growth. BrandLxft learns your business, studies your market, finds revenue opportunities, and tells you exactly what to do next.',
+    logo: require('@/assets/images/brandlxft.png'),
+    websiteUrl: 'https://brandlxft.com',
+    comingSoon: true,
   },
 ];
 
