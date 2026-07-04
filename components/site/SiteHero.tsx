@@ -31,8 +31,13 @@ export function SiteHero() {
           <Text style={styles.description}>{COMPANY.description}</Text>
 
           <View style={styles.actions}>
-            <ActionButton href="/contact" label="Get in touch" style={styles.cta} />
-            <ActionButton href="/products" label="View products" style={styles.cta} />
+            <ActionButton href="/contact" label="Get in touch" style={styles.ctaPrimary} />
+            <ActionButton
+              href="/products"
+              label="View products"
+              variant="secondary"
+              style={styles.ctaSecondary}
+            />
           </View>
 
           <View style={styles.roles}>
@@ -162,10 +167,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 12,
-    marginTop: 12,
+    marginTop: 16,
   },
-  cta: {
-    paddingHorizontal: 22,
+  ctaPrimary: {
+    paddingHorizontal: 24,
+    paddingVertical: 14,
+    borderRadius: 999,
+  },
+  ctaSecondary: {
+    paddingHorizontal: 24,
     paddingVertical: 14,
     borderRadius: 999,
   },

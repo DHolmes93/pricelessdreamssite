@@ -20,7 +20,7 @@ export default function ProductsScreen() {
         subtitle="Books, apps, and platforms from Priceless Dreams — written and built by Donovan Holmes."
       />
 
-      <Section title="Apps & platforms" subtitle="Products we own, build, and ship.">
+      <Section eyebrow="Ventures" title="Apps & platforms" subtitle="Products we own, build, and ship.">
         <View style={[styles.grid, compact && styles.gridCompact]}>
           {ventures.map((product) => (
             <ProductCard key={product.name} {...product} />
@@ -29,6 +29,7 @@ export default function ProductsScreen() {
       </Section>
 
       <Section
+        eyebrow="Publishing"
         title="Books"
         subtitle="By Donovan Holmes and Bishop Don."
         variant="muted">

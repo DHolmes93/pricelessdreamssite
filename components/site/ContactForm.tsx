@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import { Brand } from '@/constants/Colors';
+import { Radius, Shadow } from '@/constants/theme';
 import { COMPANY } from '@/constants/content';
 
 export function ContactForm() {
@@ -39,7 +40,10 @@ export function ContactForm() {
   };
 
   return (
-    <View style={styles.form}>
+    <View style={styles.card}>
+      <Text style={styles.formTitle}>Send a message</Text>
+      <Text style={styles.formSubtitle}>We typically respond within one business day.</Text>
+      <View style={styles.form}>
       <View style={styles.row}>
         <View style={styles.field}>
           <Text style={styles.label}>Name</Text>
@@ -94,11 +98,33 @@ export function ContactForm() {
         onPress={handleSubmit}>
         <Text style={styles.buttonText}>Send message</Text>
       </Pressable>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  card: {
+    backgroundColor: Brand.white,
+    borderRadius: Radius.lg,
+    borderWidth: 1,
+    borderColor: Brand.border,
+    padding: 28,
+    ...Shadow.card,
+  },
+  formTitle: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: Brand.navy,
+    letterSpacing: -0.3,
+  },
+  formSubtitle: {
+    marginTop: 6,
+    marginBottom: 24,
+    fontSize: 15,
+    color: Brand.textMuted,
+    lineHeight: 22,
+  },
   form: {
     gap: 20,
   },
@@ -118,10 +144,10 @@ const styles = StyleSheet.create({
     color: Brand.navy,
   },
   input: {
-    backgroundColor: Brand.white,
+    backgroundColor: Brand.offWhite,
     borderWidth: 1,
     borderColor: Brand.border,
-    borderRadius: 12,
+    borderRadius: Radius.md,
     paddingHorizontal: 16,
     paddingVertical: 14,
     fontSize: 16,

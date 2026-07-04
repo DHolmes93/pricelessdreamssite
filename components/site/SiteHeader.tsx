@@ -1,10 +1,13 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Href, Link, router, usePathname } from 'expo-router';
 import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BrandLogo } from '@/components/brand/BrandLogo';
+import { ActionButton } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
+import { Layout, Shadow } from '@/constants/theme';
+import { useIsCompact } from '@/hooks/useIsCompact';
+
 const NAV = [
   { href: '/', label: 'Home' },
   { href: '/products', label: 'Products' },
@@ -14,6 +17,7 @@ const NAV = [
 export function SiteHeader() {
   const pathname = usePathname();
   const insets = useSafeAreaInsets();
+  const compact = useIsCompact();
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/' || pathname === '/index';
@@ -24,7 +28,7 @@ export function SiteHeader() {
     <View
       style={[
         styles.wrapper,
-        { paddingTop: Math.max(insets.top, Platform.OS === 'web' ? 10 : 0) },
+        { paddingTop: Math.max(insets.top, Platform.OS === 'web' ? 12 : 0) },
       ]}>
       <View style={styles.inner}>
         <Link href="/" asChild>
@@ -51,6 +55,14 @@ export function SiteHeader() {
               </Pressable>
             );
           })}
+          {!compact ? (
+            <ActionButton
+              href="/contact"
+              label="Get in touch"
+              style={styles.navCta}
+              textStyle={styles.navCtaText}
+            />
+          ) : null}
         </View>
       </View>
     </View>
@@ -59,23 +71,26 @@ export function SiteHeader() {
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: Brand.white,
+    backgroundColor: 'rgba(255, 255, 255, 0.92)',
     borderBottomWidth: 1,
     borderBottomColor: Brand.border,
+    ...Shadow.header,
     ...Platform.select({
       web: {
         position: 'sticky',
         top: 0,
         zIndex: 100,
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
       },
     }),
   },
   inner: {
     width: '100%',
-    maxWidth: 1100,
+    maxWidth: Layout.maxWidth,
     alignSelf: 'center',
-    paddingHorizontal: 24,
-    paddingBottom: 12,
+    paddingHorizontal: Layout.pagePadding,
+    paddingBottom: 14,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -106,6 +121,15 @@ const styles = StyleSheet.create({
   },
   navTextActive: {
     color: Brand.blue,
+  },
+  navCta: {
+    marginLeft: 8,
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    borderRadius: 999,
+  },
+  navCtaText: {
+    fontSize: 14,
   },
   pressed: {
     opacity: 0.75,

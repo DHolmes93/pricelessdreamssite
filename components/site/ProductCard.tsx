@@ -2,6 +2,7 @@ import { Image, ImageSourcePropType, Platform, StyleSheet, Text, View } from 're
 
 import { ActionButton } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
+import { Radius, Shadow } from '@/constants/theme';
 import { useIsCompact } from '@/hooks/useIsCompact';
 
 type ProductCardProps = {
@@ -37,22 +38,25 @@ export function ProductCard({
           <Image
             source={logo}
             style={styles.logo}
-            resizeMode="cover"
+            resizeMode="contain"
             accessibilityLabel={`${name} logo`}
           />
         </View>
       ) : null}
-      <View style={styles.metaRow}>
-        <Text style={styles.category}>{category}</Text>
-        {comingSoon ? (
-          <View style={styles.comingSoonBadge}>
-            <Text style={styles.comingSoonText}>Coming soon</Text>
-          </View>
-        ) : null}
+      <View style={styles.body}>
+        <View style={styles.metaRow}>
+          <Text style={styles.category}>{category}</Text>
+          {comingSoon ? (
+            <View style={styles.comingSoonBadge}>
+              <Text style={styles.comingSoonText}>Coming soon</Text>
+            </View>
+          ) : null}
+        </View>
+        <Text style={styles.name}>{name}</Text>
+        {authors ? <Text style={styles.authors}>by {authors}</Text> : null}
+        <Text style={styles.description}>{description}</Text>
       </View>
-      <Text style={styles.name}>{name}</Text>
-      {authors ? <Text style={styles.authors}>by {authors}</Text> : null}
-      <Text style={styles.description}>{description}</Text>
+      <View style={styles.actions}>
       {amazonUrl ? (
         <ActionButton
           href={amazonUrl}
@@ -87,6 +91,7 @@ export function ProductCard({
           ]}
         />
       ) : null}
+      </View>
     </View>
   );
 }
@@ -94,24 +99,14 @@ export function ProductCard({
 const styles = StyleSheet.create({
   card: {
     flex: 1,
-    minWidth: 260,
+    minWidth: 280,
+    flexDirection: 'column',
     backgroundColor: Brand.white,
-    borderRadius: 18,
+    borderRadius: Radius.lg,
     borderWidth: 1,
     borderColor: Brand.border,
-    padding: 24,
-    ...Platform.select({
-      web: {
-        boxShadow: '0 8px 24px rgba(27, 43, 57, 0.06)',
-      },
-      default: {
-        shadowColor: Brand.navy,
-        shadowOpacity: 0.06,
-        shadowRadius: 10,
-        shadowOffset: { width: 0, height: 4 },
-        elevation: 2,
-      },
-    }),
+    overflow: 'hidden',
+    ...Shadow.card,
   },
   cardCompact: {
     flex: undefined,
@@ -121,17 +116,25 @@ const styles = StyleSheet.create({
   logoWrap: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 132,
-    marginBottom: 16,
-    borderRadius: 14,
-    backgroundColor: Brand.offWhite,
-    borderWidth: 1,
-    borderColor: Brand.border,
-    overflow: 'hidden',
+    height: 140,
+    backgroundColor: Brand.surfaceMuted,
+    borderBottomWidth: 1,
+    borderBottomColor: Brand.border,
+    padding: 16,
   },
   logo: {
     width: '100%',
     height: '100%',
+  },
+  body: {
+    padding: 24,
+    paddingBottom: 16,
+    flex: 1,
+  },
+  actions: {
+    paddingHorizontal: 24,
+    paddingBottom: 24,
+    gap: 10,
   },
   metaRow: {
     flexDirection: 'row',
@@ -162,10 +165,11 @@ const styles = StyleSheet.create({
     letterSpacing: 1.2,
   },
   name: {
-    marginTop: 10,
+    marginTop: 8,
     fontSize: 20,
     fontWeight: '700',
     color: Brand.navy,
+    letterSpacing: -0.2,
   },
   authors: {
     marginTop: 6,
@@ -177,18 +181,18 @@ const styles = StyleSheet.create({
   description: {
     marginTop: 8,
     fontSize: 15,
-    lineHeight: 22,
+    lineHeight: 24,
     color: Brand.textMuted,
   },
   linkButton: {
-    marginTop: 20,
-    borderRadius: 999,
+    borderRadius: Radius.pill,
+    marginTop: 0,
   },
   linkButtonCompact: {
     alignSelf: 'stretch',
     justifyContent: 'center',
   },
   linkButtonSecondary: {
-    marginTop: 12,
+    marginTop: 0,
   },
 });

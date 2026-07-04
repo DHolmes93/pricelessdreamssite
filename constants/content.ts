@@ -106,6 +106,7 @@ export const PRODUCTS: Product[] = [
     category: 'App',
     description:
       'The beauty app for shopping diverse-owned brands, consulting licensed professionals, and building community.',
+    logo: require('@/assets/images/debonae.png'),
     websiteUrl: 'https://debonae.com',
     comingSoon: true,
   },

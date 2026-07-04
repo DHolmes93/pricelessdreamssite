@@ -8,6 +8,8 @@ export const Brand = {
   blueLight: '#63B3ED',
   white: '#FFFFFF',
   offWhite: '#F7F9FC',
+  surface: '#FFFFFF',
+  surfaceMuted: '#EEF2F7',
   slate: '#4A5568',
   text: '#1B2B39',
   textOnDark: '#FFFFFF',

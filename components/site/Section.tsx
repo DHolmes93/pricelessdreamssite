@@ -2,26 +2,67 @@ import { ReactNode } from 'react';
 import { StyleSheet, Text, View, ViewStyle } from 'react-native';
 
 import { Brand } from '@/constants/Colors';
+import { Layout } from '@/constants/theme';
 import { useIsCompact } from '@/hooks/useIsCompact';
 
 type SectionProps = {
   title?: string;
   subtitle?: string;
+  eyebrow?: string;
   children: ReactNode;
   style?: ViewStyle;
-  variant?: 'light' | 'muted';
+  variant?: 'light' | 'muted' | 'dark';
+  align?: 'left' | 'center';
 };
 
-export function Section({ title, subtitle, children, style, variant = 'light' }: SectionProps) {
-  const onMuted = variant === 'muted';
+export function Section({
+  title,
+  subtitle,
+  eyebrow,
+  children,
+  style,
+  variant = 'light',
+  align = 'left',
+}: SectionProps) {
   const compact = useIsCompact();
+  const centered = align === 'center';
 
   return (
-    <View style={[styles.section, onMuted && styles.sectionMuted, compact && styles.sectionCompact, style]}>
-      {(title || subtitle) && (
-        <View style={[styles.header, compact && styles.headerCompact]}>
-          {title ? <Text style={[styles.title, compact && styles.titleCompact]}>{title}</Text> : null}
-          {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
+    <View
+      style={[
+        styles.section,
+        variant === 'muted' && styles.sectionMuted,
+        variant === 'dark' && styles.sectionDark,
+        compact && styles.sectionCompact,
+        style,
+      ]}>
+      {(eyebrow || title || subtitle) && (
+        <View style={[styles.header, centered && styles.headerCenter, compact && styles.headerCompact]}>
+          {eyebrow ? (
+            <Text style={[styles.eyebrow, variant === 'dark' && styles.eyebrowDark]}>{eyebrow}</Text>
+          ) : null}
+          {title ? (
+            <Text
+              style={[
+                styles.title,
+                variant === 'dark' && styles.titleDark,
+                centered && styles.titleCenter,
+                compact && styles.titleCompact,
+              ]}>
+              {title}
+            </Text>
+          ) : null}
+          {title ? <View style={[styles.rule, centered && styles.ruleCenter, variant === 'dark' && styles.ruleDark]} /> : null}
+          {subtitle ? (
+            <Text
+              style={[
+                styles.subtitle,
+                variant === 'dark' && styles.subtitleDark,
+                centered && styles.subtitleCenter,
+              ]}>
+              {subtitle}
+            </Text>
+          ) : null}
         </View>
       )}
       {children}
@@ -32,40 +73,86 @@ export function Section({ title, subtitle, children, style, variant = 'light' }:
 const styles = StyleSheet.create({
   section: {
     width: '100%',
-    maxWidth: 1100,
+    maxWidth: Layout.maxWidth,
     alignSelf: 'center',
-    paddingHorizontal: 24,
-    paddingVertical: 48,
+    paddingHorizontal: Layout.pagePadding,
+    paddingVertical: 56,
     backgroundColor: Brand.white,
   },
   sectionMuted: {
     backgroundColor: Brand.offWhite,
   },
+  sectionDark: {
+    backgroundColor: Brand.navy,
+  },
   sectionCompact: {
     paddingHorizontal: 20,
-    paddingVertical: 36,
+    paddingVertical: 40,
   },
   header: {
-    marginBottom: 32,
+    marginBottom: 36,
+    maxWidth: 640,
+  },
+  headerCenter: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    maxWidth: 720,
   },
   headerCompact: {
-    marginBottom: 24,
+    marginBottom: 28,
+  },
+  eyebrow: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: Brand.blue,
+    letterSpacing: 1.6,
+    textTransform: 'uppercase',
+    marginBottom: 10,
+  },
+  eyebrowDark: {
+    color: Brand.blueLight,
   },
   title: {
-    fontSize: 32,
-    fontWeight: '700',
+    fontSize: 34,
+    fontWeight: '800',
     color: Brand.navy,
-    letterSpacing: -0.5,
+    letterSpacing: -0.6,
+    lineHeight: 40,
+  },
+  titleDark: {
+    color: Brand.white,
+  },
+  titleCenter: {
+    textAlign: 'center',
   },
   titleCompact: {
-    fontSize: 26,
-    letterSpacing: -0.3,
+    fontSize: 28,
+    lineHeight: 34,
+    letterSpacing: -0.4,
+  },
+  rule: {
+    width: 48,
+    height: 3,
+    borderRadius: 999,
+    backgroundColor: Brand.blue,
+    marginTop: 14,
+    marginBottom: 14,
+  },
+  ruleCenter: {
+    alignSelf: 'center',
+  },
+  ruleDark: {
+    backgroundColor: Brand.blueLight,
   },
   subtitle: {
-    marginTop: 12,
     fontSize: 17,
-    lineHeight: 26,
+    lineHeight: 27,
     color: Brand.textMuted,
-    maxWidth: 560,
+  },
+  subtitleDark: {
+    color: Brand.textMutedOnDark,
+  },
+  subtitleCenter: {
+    textAlign: 'center',
   },
 });

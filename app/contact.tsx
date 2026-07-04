@@ -7,6 +7,7 @@ import { Screen } from '@/components/site/Screen';
 import { Section } from '@/components/site/Section';
 import { SiteFooter } from '@/components/site/SiteFooter';
 import { Brand } from '@/constants/Colors';
+import { Layout, Radius, Shadow } from '@/constants/theme';
 import { COMPANY, FOUNDER_ROLES } from '@/constants/content';
 
 export default function ContactScreen() {
@@ -69,13 +70,14 @@ export default function ContactScreen() {
 const styles = StyleSheet.create({
   layout: {
     width: '100%',
-    maxWidth: 1100,
+    maxWidth: Layout.maxWidth,
     alignSelf: 'center',
-    paddingHorizontal: 24,
+    paddingHorizontal: Layout.pagePadding,
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 32,
     backgroundColor: Brand.offWhite,
+    paddingBottom: 16,
   },
   formSection: {
     flex: 2,
@@ -111,11 +113,12 @@ const styles = StyleSheet.create({
   },
   infoCard: {
     backgroundColor: Brand.white,
-    borderRadius: 18,
+    borderRadius: Radius.lg,
     borderWidth: 1,
     borderColor: Brand.border,
-    padding: 20,
+    padding: 22,
     gap: 10,
+    ...Shadow.card,
   },
   infoAction: {
     fontSize: 14,
@@ -128,10 +131,11 @@ const styles = StyleSheet.create({
     color: Brand.textMuted,
   },
   rolesCard: {
-    backgroundColor: Brand.navy,
-    borderRadius: 18,
-    padding: 22,
+    backgroundColor: Brand.navyDark,
+    borderRadius: Radius.lg,
+    padding: 24,
     gap: 12,
+    ...Shadow.card,
   },
   rolesTitle: {
     fontSize: 14,

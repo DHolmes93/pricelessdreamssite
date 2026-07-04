@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import { Brand } from '@/constants/Colors';
+import { Radius, Shadow } from '@/constants/theme';
 
 type ActionButtonProps = {
   href: string;
@@ -89,12 +90,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
     alignSelf: 'flex-start',
-    borderRadius: 10,
-    paddingHorizontal: 16,
+    borderRadius: Radius.sm,
+    paddingHorizontal: 18,
     paddingVertical: 12,
   },
   primary: {
     backgroundColor: Brand.blue,
+    ...Shadow.button,
   },
   secondary: {
     backgroundColor: Brand.accentSoft,
