@@ -1,5 +1,5 @@
 import { Href, Link } from 'expo-router';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Linking, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { BrandLogo } from '@/components/brand/BrandLogo';
 import { CircuitPattern } from '@/components/brand/CircuitPattern';
@@ -15,6 +15,7 @@ const FOOTER_LINKS = [
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
+  const openLinkedIn = () => Linking.openURL(COMPANY.founder.linkedinUrl);
 
   return (
     <View style={styles.footer}>
@@ -40,6 +41,9 @@ export function SiteFooter() {
             <Text style={styles.contactLine}>{COMPANY.email}</Text>
             <Text style={styles.contactLine}>{COMPANY.phone}</Text>
             <Text style={styles.contactLine}>{COMPANY.website}</Text>
+            <Pressable onPress={openLinkedIn} accessibilityRole="link">
+              <Text style={styles.contactLink}>LinkedIn · {COMPANY.founder.name}</Text>
+            </Pressable>
           </View>
         </View>
 
@@ -116,6 +120,12 @@ const styles = StyleSheet.create({
   contactLine: {
     fontSize: 15,
     color: Brand.textMutedOnDark,
+    lineHeight: 22,
+  },
+  contactLink: {
+    fontSize: 15,
+    color: Brand.blueLight,
+    fontWeight: '600',
     lineHeight: 22,
   },
   bottom: {

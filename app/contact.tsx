@@ -13,6 +13,7 @@ import { COMPANY, FOUNDER_ROLES } from '@/constants/content';
 export default function ContactScreen() {
   const openEmail = () => Linking.openURL(`mailto:${COMPANY.email}`);
   const openPhone = () => Linking.openURL(`tel:${COMPANY.phone.replace(/-/g, '')}`);
+  const openLinkedIn = () => Linking.openURL(COMPANY.founder.linkedinUrl);
 
   return (
     <Screen>
@@ -43,6 +44,12 @@ export default function ContactScreen() {
             <IconBadge icon="phone" label={COMPANY.phone} />
             <Text style={styles.infoAction} onPress={openPhone}>
               Call now
+            </Text>
+          </View>
+          <View style={styles.infoCard}>
+            <IconBadge icon="linkedin" label="LinkedIn" />
+            <Text style={styles.infoAction} onPress={openLinkedIn}>
+              View profile
             </Text>
           </View>
           <View style={styles.infoCard}>

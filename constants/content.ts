@@ -12,6 +12,7 @@ export const COMPANY = {
   founder: {
     name: 'Donovan Holmes',
     title: 'Founder & CEO',
+    linkedinUrl: 'https://www.linkedin.com/in/donovan-holmes-9ab068110/',
   },
 } as const;
 
