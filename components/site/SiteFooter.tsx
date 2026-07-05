@@ -10,7 +10,7 @@ import { Layout } from '@/constants/theme';
 const FOOTER_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/products', label: 'Products' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/contact', label: 'Get in touch' },
 ] as const;
 
 export function SiteFooter() {
@@ -36,7 +36,7 @@ export function SiteFooter() {
           </View>
 
           <View style={styles.contactCol}>
-            <Text style={styles.colTitle}>Contact</Text>
+            <Text style={styles.colTitle}>Reach us</Text>
             <Text style={styles.contactLine}>{COMPANY.email}</Text>
             <Text style={styles.contactLine}>{COMPANY.phone}</Text>
             <Text style={styles.contactLine}>{COMPANY.website}</Text>

@@ -6,9 +6,9 @@ Marketing site for **Priceless Dreams**, a tech enterprise building apps, platfo
 
 - **Home** (`/`) — Hero, services, stats, product portfolio, and call-to-action
 - **Products** (`/products`) — Books, apps, and platforms
-- **Contact** (`/contact`) — Message form (opens your email client) and company details
+- **Get in touch** (`/contact`) — Message form (opens your email client) and company details
 
-Top navigation bar (Home | Products | Contact) — no bottom tabs.
+Top navigation bar (Home | Products | Get in touch) — no bottom tabs.
 
 ## Run locally
 

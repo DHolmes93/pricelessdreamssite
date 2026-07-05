@@ -17,7 +17,7 @@ export default function ContactScreen() {
   return (
     <Screen>
       <PageHeader
-        title="Contact us"
+        title="Get in touch"
         subtitle="Tell us about your project, partnership, or product idea. We typically respond within one business day."
       />
 

@@ -6,18 +6,15 @@ import { BrandLogo } from '@/components/brand/BrandLogo';
 import { ActionButton } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
 import { Layout, Shadow } from '@/constants/theme';
-import { useIsCompact } from '@/hooks/useIsCompact';
 
 const NAV = [
   { href: '/', label: 'Home' },
   { href: '/products', label: 'Products' },
-  { href: '/contact', label: 'Contact' },
 ] as const;
 
 export function SiteHeader() {
   const pathname = usePathname();
   const insets = useSafeAreaInsets();
-  const compact = useIsCompact();
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/' || pathname === '/index';
@@ -55,14 +52,12 @@ export function SiteHeader() {
               </Pressable>
             );
           })}
-          {!compact ? (
-            <ActionButton
-              href="/contact"
-              label="Get in touch"
-              style={styles.navCta}
-              textStyle={styles.navCtaText}
-            />
-          ) : null}
+          <ActionButton
+            href="/contact"
+            label="Get in touch"
+            style={styles.navCta}
+            textStyle={styles.navCtaText}
+          />
         </View>
       </View>
     </View>
