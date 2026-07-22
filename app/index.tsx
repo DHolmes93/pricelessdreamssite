@@ -8,7 +8,7 @@ import { SiteHero } from '@/components/site/SiteHero';
 import { ProductCard } from '@/components/site/ProductCard';
 import { ActionButton } from '@/components/site/ActionButton';
 import { Brand } from '@/constants/Colors';
-import { PRODUCTS, SERVICES, STATS } from '@/constants/content';
+import { PRODUCTS, PURPOSE, SERVICES, STATS } from '@/constants/content';
 import { Layout } from '@/constants/theme';
 import { useIsCompact } from '@/hooks/useIsCompact';
 
@@ -19,6 +19,33 @@ export default function HomeScreen() {
   return (
     <Screen>
       <SiteHero />
+
+      <View style={styles.purposeBand}>
+        <View style={[styles.purposeInner, compact && styles.purposeInnerCompact]}>
+          <Text style={styles.purposeEyebrow}>{PURPOSE.eyebrow}</Text>
+          <Text style={[styles.purposeTitle, compact && styles.purposeTitleCompact]}>
+            {PURPOSE.title}
+          </Text>
+          <View style={styles.purposeRule} />
+          <Text style={[styles.purposeStatement, compact && styles.purposeStatementCompact]}>
+            {PURPOSE.statement}
+          </Text>
+          <View style={[styles.purposePillars, compact && styles.purposePillarsCompact]}>
+            {PURPOSE.pillars.map((pillar, index) => (
+              <View
+                key={pillar.word}
+                style={[
+                  styles.purposePillar,
+                  compact && styles.purposePillarCompact,
+                  index < PURPOSE.pillars.length - 1 && !compact && styles.purposePillarBorder,
+                ]}>
+                <Text style={styles.purposeWord}>{pillar.word}</Text>
+                <Text style={styles.purposeLine}>{pillar.line}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
+      </View>
 
       <Section
         eyebrow="Capabilities"
@@ -92,6 +119,100 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 16,
+  },
+  purposeBand: {
+    backgroundColor: Brand.navyDark,
+    paddingVertical: 64,
+    borderBottomWidth: 1,
+    borderBottomColor: Brand.borderOnDark,
+  },
+  purposeInner: {
+    width: '100%',
+    maxWidth: Layout.maxWidth,
+    alignSelf: 'center',
+    paddingHorizontal: Layout.pagePadding,
+    alignItems: 'flex-start',
+  },
+  purposeInnerCompact: {
+    paddingHorizontal: 20,
+    paddingVertical: 0,
+  },
+  purposeEyebrow: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: Brand.blueLight,
+    letterSpacing: 1.6,
+    textTransform: 'uppercase',
+    marginBottom: 12,
+  },
+  purposeTitle: {
+    fontSize: 36,
+    fontWeight: '800',
+    color: Brand.white,
+    letterSpacing: -0.5,
+    lineHeight: 42,
+  },
+  purposeTitleCompact: {
+    fontSize: 28,
+    lineHeight: 34,
+  },
+  purposeRule: {
+    width: 48,
+    height: 3,
+    borderRadius: 999,
+    backgroundColor: Brand.blueLight,
+    marginTop: 16,
+    marginBottom: 20,
+  },
+  purposeStatement: {
+    fontSize: 20,
+    lineHeight: 32,
+    fontWeight: '500',
+    color: Brand.textMutedOnDark,
+    maxWidth: 640,
+    marginBottom: 40,
+  },
+  purposeStatementCompact: {
+    fontSize: 17,
+    lineHeight: 28,
+    marginBottom: 28,
+  },
+  purposePillars: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    width: '100%',
+    gap: 0,
+  },
+  purposePillarsCompact: {
+    flexDirection: 'column',
+    gap: 20,
+  },
+  purposePillar: {
+    flex: 1,
+    minWidth: 140,
+    paddingRight: 24,
+    paddingVertical: 4,
+  },
+  purposePillarCompact: {
+    paddingRight: 0,
+    minWidth: undefined,
+  },
+  purposePillarBorder: {
+    borderRightWidth: 1,
+    borderRightColor: Brand.borderOnDark,
+  },
+  purposeWord: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: Brand.blueLight,
+    letterSpacing: -0.3,
+    marginBottom: 8,
+  },
+  purposeLine: {
+    fontSize: 14,
+    lineHeight: 22,
+    color: Brand.textMutedOnDark,
+    maxWidth: 200,
   },
   statsBand: {
     backgroundColor: Brand.navyDark,

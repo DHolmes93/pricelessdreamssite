@@ -24,6 +24,19 @@ export const FOUNDER_ROLES = [
   { icon: 'code' as const, label: 'Software Engineer' },
 ] as const;
 
+export const PURPOSE = {
+  eyebrow: 'Purpose',
+  title: 'Why I\'m here',
+  statement:
+    'I\'m here to inspire, teach, create, and be a vessel of growth—so people don\'t just dream bigger. They become bigger.',
+  pillars: [
+    { word: 'Inspire', line: 'Spark the fire that refuses to die.' },
+    { word: 'Teach', line: 'Pass the playbook, not just the pep talk.' },
+    { word: 'Create', line: 'Build what the world hasn\'t seen yet.' },
+    { word: 'Grow', line: 'Be the vessel that multiplies others.' },
+  ],
+} as const;
+
 export const SERVICES = [
   {
     icon: 'mobile' as const,
@@ -82,6 +95,14 @@ export const PRODUCTS: Product[] = [
     description:
       'You Either Build or Destroy. Street-tested wisdom for young men who want to leave destruction behind and step into real manhood, principles, and purpose.',
     amazonUrl: 'https://www.amazon.com/dp/1533083150',
+  },
+  {
+    name: 'Women We Forgot',
+    category: 'Book',
+    authors: 'Bishop Don',
+    description:
+      'A book for and dedicated to women—honoring the ones history skipped past, the ones love overlooked, and the ones still rising. Written so they are finally seen, remembered, and celebrated.',
+    comingSoon: true,
   },
   {
     name: 'The Convo Lab',
