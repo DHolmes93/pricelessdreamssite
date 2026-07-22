@@ -101,7 +101,7 @@ export const PRODUCTS: Product[] = [
     category: 'Book',
     authors: 'Bishop Don',
     description:
-      'A book for and dedicated to women—honoring the ones history skipped past, the ones love overlooked, and the ones still rising. Written so they are finally seen, remembered, and celebrated.',
+      'About the essence of woman that culture forgot. Feminine energy is what balances the world—and when that true essence is lost, you get a world so upside down that men win Woman of the Year awards. This book is for reclaiming what was buried.',
     comingSoon: true,
   },
   {

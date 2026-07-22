@@ -30,17 +30,21 @@ export default function HomeScreen() {
           <Text style={[styles.purposeStatement, compact && styles.purposeStatementCompact]}>
             {PURPOSE.statement}
           </Text>
-          <View style={[styles.purposePillars, compact && styles.purposePillarsCompact]}>
+          <View style={styles.purposePillars}>
             {PURPOSE.pillars.map((pillar, index) => (
               <View
                 key={pillar.word}
                 style={[
                   styles.purposePillar,
                   compact && styles.purposePillarCompact,
-                  index < PURPOSE.pillars.length - 1 && !compact && styles.purposePillarBorder,
+                  index < PURPOSE.pillars.length - 1 && styles.purposePillarBorder,
                 ]}>
-                <Text style={styles.purposeWord}>{pillar.word}</Text>
-                <Text style={styles.purposeLine}>{pillar.line}</Text>
+                <Text style={[styles.purposeWord, compact && styles.purposeWordCompact]}>
+                  {pillar.word}
+                </Text>
+                <Text style={[styles.purposeLine, compact && styles.purposeLineCompact]}>
+                  {pillar.line}
+                </Text>
               </View>
             ))}
           </View>
@@ -179,23 +183,18 @@ const styles = StyleSheet.create({
   },
   purposePillars: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexWrap: 'nowrap',
     width: '100%',
-    gap: 0,
-  },
-  purposePillarsCompact: {
-    flexDirection: 'column',
-    gap: 20,
+    alignItems: 'flex-start',
   },
   purposePillar: {
     flex: 1,
-    minWidth: 140,
-    paddingRight: 24,
+    minWidth: 0,
+    paddingRight: 20,
     paddingVertical: 4,
   },
   purposePillarCompact: {
-    paddingRight: 0,
-    minWidth: undefined,
+    paddingRight: 10,
   },
   purposePillarBorder: {
     borderRightWidth: 1,
@@ -208,11 +207,18 @@ const styles = StyleSheet.create({
     letterSpacing: -0.3,
     marginBottom: 8,
   },
+  purposeWordCompact: {
+    fontSize: 15,
+    marginBottom: 6,
+  },
   purposeLine: {
     fontSize: 14,
     lineHeight: 22,
     color: Brand.textMutedOnDark,
-    maxWidth: 200,
+  },
+  purposeLineCompact: {
+    fontSize: 11,
+    lineHeight: 16,
   },
   statsBand: {
     backgroundColor: Brand.navyDark,
